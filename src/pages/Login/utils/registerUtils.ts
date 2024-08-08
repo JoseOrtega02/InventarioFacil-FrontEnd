@@ -1,3 +1,4 @@
+import { handleFetchErrors } from "../../../utils/utils"
 import { UserRegister } from "../schemaYup/UserSchema"
 import Cookies from "js-cookie"
 export const registerFetch =async (user:UserRegister)=>{
@@ -18,7 +19,14 @@ export const registerFetch =async (user:UserRegister)=>{
         },
         body: JSON.stringify(data),
       })
+    .then(handleFetchErrors)
     .then(res=>JSON.stringify(res))
     .then(res=>console.log(res))
-    .catch(err=>console.error(err.json()))
+    .catch(error => {
+        if (error instanceof TypeError) {
+          console.error('Network error or request was aborted:', error);
+        } else {
+          console.error('Fetch error:', error);
+        }
+      });
 }
