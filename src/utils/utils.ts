@@ -4,9 +4,7 @@ export const getCRSFToken= async ()=>{
     await fetch(url,{method:"GET",credentials:"include"})
     .then(res=>res.json())
     .then((res)=>{
-
         Cookies.set("x-csrf-token",res.csrfToken)
-        alert('cookieSetting correct');
     })
     .catch(err=>console.error(err))
 } 

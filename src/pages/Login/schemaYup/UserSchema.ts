@@ -5,3 +5,9 @@ export const userSchemaLogin = object({
 })
 export type UserLogin =  InferType<typeof userSchemaLogin>
 
+export const userSchemaRegister= object({
+    username: string().required().matches(/^[a-zA-Z0-9_-]{3,30}$/,'Username must be 3-30 characters long and can only contain letters, numbers, underscores, and hyphens'),
+    password: string().required().min(6,"Password must be 6 letter minimun").matches(/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/,"Password must contain at least one uppercase letter, one number, and one special character"),
+    email: string().required().email()  
+})
+export type UserRegister = InferType<typeof userSchemaRegister>
