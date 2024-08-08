@@ -1,5 +1,7 @@
 import { ErrorMessage, Field, Form, Formik, } from "formik"
 import { userSchemaLogin } from "./schemaYup/UserSchema";
+import { loginFetch } from "./utils/loginUtils";
+import { getCRSFToken } from "../../utils/utils";
 
 
 function Login() {
@@ -7,8 +9,9 @@ function Login() {
       <Formik
         initialValues={{ userName: '', password: '' }}
         validationSchema={userSchemaLogin}
-        onSubmit={(values, { setSubmitting }) => {
-          alert(JSON.stringify(values, null, 2));
+        onSubmit={async (values, { setSubmitting }) => {
+          await getCRSFToken()
+          await loginFetch(values)
           setSubmitting(false);
         }}
       >
