@@ -1,3 +1,4 @@
+import { handleFetchErrors } from "../../../utils/utils";
 import { UserLogin } from "../schemaYup/UserSchema";
 import Cookies from "js-cookie";
 export const loginFetch =async (user:UserLogin)=>{
@@ -17,7 +18,13 @@ export const loginFetch =async (user:UserLogin)=>{
         },
         body: JSON.stringify(data),
       })
-    
+    .then(handleFetchErrors)
     .then(res=>console.log(res))
-    .catch(err=>console.error(err))
+    .catch(error => {
+        if (error instanceof TypeError) {
+          console.error('Network error or request was aborted:', error);
+        } else {
+          console.error('Fetch error:', error);
+        }
+      });
 }
