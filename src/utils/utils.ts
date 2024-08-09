@@ -17,18 +17,23 @@ export const handleFetchErrors = async (response: { ok: any; json: () => Promise
     return response;
   }
 
-export const getUser=async () =>{
-    const backendUrl = import.meta.env.VITE_BACKEND_URL + "/user"
-    const user = fetch(backendUrl)
-    .then(handleFetchErrors)
-    .then(res=>res.json())
-    .then(data=>data)
-    .catch((error)=>{
+  export const getUser = async () => {
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL + "/user";
+      const response = await fetch(backendUrl, { method: "GET", credentials: "include" });
+  
+      if (!response.ok) {
+        throw new Error(`Fetch error: ${response.statusText}`);
+      }
+  
+      const user = await response.json();
+      return user;
+    } catch (error) {
       if (error instanceof TypeError) {
         console.error('Network error or request was aborted:', error);
       } else {
         console.error('Fetch error:', error);
       }
-    })
-    return user
-}
+      return null; // or handle the error according to your needs
+    }
+  };

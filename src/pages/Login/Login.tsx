@@ -1,11 +1,11 @@
 import { ErrorMessage, Field, Form, Formik, } from "formik"
 import { userSchemaLogin } from "./schemaYup/UserSchema";
 import { loginFetch } from "./utils/loginUtils";
-import { getCRSFToken } from "../../utils/utils";
+import { getCRSFToken, getUser } from "../../utils/utils";
 
 
 function Login() {
-    return (
+    return (<>
       <Formik
         initialValues={{ userName: '', password: '' }}
         validationSchema={userSchemaLogin}
@@ -35,6 +35,10 @@ function Login() {
           </Form>
         )}
       </Formik>
+      <button onClick={()=> {const user= getUser()
+        console.log(user)
+      }}>checkUser</button>
+      </>
     );
   }
 

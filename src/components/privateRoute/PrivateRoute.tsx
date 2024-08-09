@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { getUser } from "../../utils/utils";
-
-interface Props{
+interface Props {
     component: React.ComponentType,
     path?: string
-}
-
-export const PrivateRoute: React.FC<Props> = ({component:RouteComponent})=>{
-    const user = getUser()
-    if(!user){
-        return <RouteComponent/>
+  }
+export const PrivateRoute: React.FC<Props> = ({ component: RouteComponent }) => {
+    const [user, setUser] = useState<null | object>(null); // Replace `any` with the correct user type if available
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      const fetchUser = async () => {
+        const fetchedUser = await getUser();
+        setUser(fetchedUser);
+        setLoading(false);
+      };
+      
+      fetchUser();
+    }, []);
+  
+    if (loading) {
+      return <div>Loading...</div>; // You can replace this with a loading spinner or some other UI
     }
-    return <Navigate to="/"/>
-} 
+  
+    if (!user) {
+      return <Navigate to="/" />;
+    }
+  
+    return <RouteComponent />;
+  };
