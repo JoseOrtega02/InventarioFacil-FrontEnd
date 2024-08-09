@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import Login from './pages/Login/Login.tsx';
 import Register from './pages/Login/Register.tsx';
+import { PrivateRoute } from './components/privateRoute/PrivateRoute.tsx';
+import Dashboard from './pages/Dashboard/Dashboard.tsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,9 @@ const router = createBrowserRouter([
     },{
       path:"register",
       element: <Register/>
+    },{
+      path:"dashboard",
+      element:<PrivateRoute component={Dashboard}/>
     }]
   },
 ]);

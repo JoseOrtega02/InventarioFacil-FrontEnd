@@ -19,7 +19,7 @@ export const loginFetch =async (user:UserLogin)=>{
         body: JSON.stringify(data),
       })
     .then(handleFetchErrors)
-    .then(res=>console.log(res))
+    .then(res=>console.log(res.json()))
     .catch(error => {
         if (error instanceof TypeError) {
           console.error('Network error or request was aborted:', error);

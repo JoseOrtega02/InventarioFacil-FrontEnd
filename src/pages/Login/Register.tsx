@@ -21,7 +21,7 @@ function Register(){
             </div>
             <div>
               <label htmlFor="email">Email: </label>
-              <Field type="text" name="email" id="email" />
+              <Field type="email" name="email" id="email" />
               <ErrorMessage name="email" component="div" className="error" />
             </div>
             <div>
