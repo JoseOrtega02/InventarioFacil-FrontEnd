@@ -8,7 +8,7 @@ export const getCRSFToken= async ()=>{
     })
     .catch(err=>console.error(err))
 } 
-export const handleFetchErrors = async (response: { ok: any; json: () => Promise<any>; statusText: any; status: any }) => {
+export const handleFetchErrors = async (response: Response) => {
     if (!response.ok) {
       const errorData = await response.json().catch(() => null); // Try to parse JSON error body
       const errorMessage = errorData?.message ||errorData?.error || response.statusText || 'Unknown error';
