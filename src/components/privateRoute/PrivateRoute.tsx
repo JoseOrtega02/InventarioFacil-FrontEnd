@@ -20,7 +20,7 @@ export const PrivateRoute: React.FC<Props> = ({ component: RouteComponent }) => 
     }, []);
   
     if (loading) {
-      return <div>Loading...</div>; // You can replace this with a loading spinner or some other UI
+      return <div>Loading...</div>; 
     }
   
     if (!user) {

@@ -10,6 +10,7 @@ import Login from './pages/Login/Login.tsx';
 import Register from './pages/Login/Register.tsx';
 import { PrivateRoute } from './components/privateRoute/PrivateRoute.tsx';
 import Dashboard from './pages/Dashboard/Dashboard.tsx';
+import Table from './pages/Table/Table.tsx';
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
       element: <Register/>
     },{
       path:"dashboard",
-      element:<PrivateRoute component={Dashboard}/>
+      element:<PrivateRoute component={Dashboard}/>,
+      children:[{
+        path:"tables",
+        element: <Table/>
+      }]
     }]
   },
 ]);

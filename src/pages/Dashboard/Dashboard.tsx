@@ -1,4 +1,14 @@
+
+import { Outlet } from "react-router-dom"
+
+
 function Dashboard(){
-    return <>Hello User</>
+    
+    return <>
+        
+
+
+        <Outlet/>
+    </>
 }
 export default Dashboard
