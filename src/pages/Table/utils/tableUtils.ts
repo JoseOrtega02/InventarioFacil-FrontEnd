@@ -21,3 +21,29 @@ export const  createTable=async (body:CreateTable) =>{
           }
       })
 }   
+interface TableData {
+  _id: string;
+  owner: string;
+  tableName: string;
+  items: string[];
+}
+export const fetchTables= async(setTables: React.Dispatch<React.SetStateAction<TableData[]>>)=>{
+  try{
+      const response =await fetch(urlBackend+"/table",{method:"GET",credentials:"include"})
+      if(response.ok){
+          const result = await response.json();
+          setTables(result)
+      }else{
+          console.log("failde to fetch")
+      }
+      
+  }catch(error){
+      if (error instanceof TypeError){
+          console.error("Network shut down")
+      }
+      else{
+          console.log("error:"+error)
+      }
+  }
+  
+}
