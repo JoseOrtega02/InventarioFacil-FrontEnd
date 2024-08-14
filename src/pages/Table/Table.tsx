@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CreateTable from "./Components/CreateTable"
 import { fetchTables } from "./utils/tableUtils";
+import DeleteTable from "./Components/DeleteTable";
 
 interface TableData {
     _id: string;
@@ -34,6 +35,7 @@ function Table() {
     useEffect(()=>{
          fetchTables(setTables)
     },[])
+    console.log(tables[0])
   return (
     <div>
         <CreateTable/>
@@ -44,6 +46,7 @@ function Table() {
       ) : (
         "No tables"
       )}
+      <DeleteTable/>
     </div>
   )
 }
