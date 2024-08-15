@@ -1,6 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { deleteTable } from "../utils/tableUtils"
-import { getCRSFToken } from "../../../utils/utils"
 import { deleteTableSchema } from "../yupSchemas/tableSchema"
 
 const DeleteTable = () => {

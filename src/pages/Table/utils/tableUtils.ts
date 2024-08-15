@@ -50,18 +50,20 @@ export const fetchTables= async(setTables: React.Dispatch<React.SetStateAction<T
 
 export const deleteTable = async (values:DeleteTable) =>{
   const csrfToken= Cookies.get("x-csrf-token")?.toString()
-  await fetch(urlBackend +"/table/delete",{method:"DELETE",body:JSON.stringify(values),headers:{
+ 
+  const bodyStringify = JSON.stringify(values)
+  await fetch(urlBackend +"/table/delete",{method:"DELETE",body:bodyStringify,headers:{
     'Content-Type': 'application/json',
         "x-csrf-token":csrfToken || ""
   },credentials:"include"})
   .then(handleFetchErrors)
-  .then(res=>res.json())
-  .then(data=>data)
+  .then(res=> res.json())
+  .then(data=>console.log(data))
   .catch(error=>{
     if(error instanceof TypeError){
       console.error("Network error")
     }else{
-      console.error("error:"+error)
+      console.log(error)
     }
   })
 }
