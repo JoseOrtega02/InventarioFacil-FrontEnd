@@ -1,5 +1,5 @@
 import { handleFetchErrors } from "../../../utils/utils"
-import { CreateTable, DeleteTable } from "../yupSchemas/tableSchema"
+import { CreateTable, DeleteTable, UpdateTable } from "../yupSchemas/tableSchema"
 import Cookies from "js-cookie"
 const urlBackend= import.meta.env.VITE_BACKEND_URL
 
@@ -66,4 +66,23 @@ export const deleteTable = async (values:DeleteTable) =>{
       console.log(error)
     }
   })
+}
+
+export const updateTable = async(values:UpdateTable) =>{
+    const csrfToken = Cookies.get("x-csrf-token")?.toString()
+    const bodyStringify= JSON.stringify(values)
+    await fetch(urlBackend + "/table/update",{method:"PUT",body:bodyStringify,headers:{
+        'Content-Type': 'application/json',
+        "x-csrf-token":csrfToken || ""
+    },credentials:"include"})
+    .then(handleFetchErrors)
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error=>{
+      if(error instanceof TypeError){
+        console.error("Network error")
+      }else{
+        console.log(error)
+      }
+    })
 }
