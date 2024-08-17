@@ -1,8 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
+import { AddItemType, addItemSchema } from '../YupSchemas/ItemYupSchema';
+import { postItems } from '../utils/itemUtils';
+import { useParams } from 'react-router-dom';
 
 interface AddItemForm{
-    setItems: React.Dispatch<React.SetStateAction<object[]>>
+    setItems: React.Dispatch<React.SetStateAction<AddItemType[]>>
 }
 
 function AddItemForm(props:AddItemForm){
@@ -12,6 +15,7 @@ function AddItemForm(props:AddItemForm){
             stock: 0,
             price: 0
         }}
+        validationSchema={addItemSchema}
         onSubmit={(values,{setSubmitting})=>{
             props.setItems((prevItems) => [
                 ...prevItems,
@@ -46,14 +50,16 @@ function AddItemForm(props:AddItemForm){
 
 function AddItem() {
     const [popState,setPop] = useState<boolean>(false)
-    const [items,setItems] = useState<object[]>([]) 
+    const [items,setItems] = useState<AddItemType[]>([]) 
+    const {id} = useParams()
+    console.log(id)
   return (<>
     {popState? <AddItemForm setItems={setItems} />: <></>}
-    <button onClick={()=>{
+    <button onClick={ async ()=>{
         if(!popState){
             setPop(true)
         }else{
-            console.log(items)
+            await postItems(items,id)
         }
         }}>AddItem</button></>
   )
