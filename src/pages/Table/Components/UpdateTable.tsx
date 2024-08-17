@@ -13,7 +13,7 @@ function UpdateTable() {
         }}
         validationSchema={updateSchema}
         onSubmit={async (values,{ setSubmitting })=>{
-            await updateTable(values)
+            // await updateTable(values)
             setSubmitting(false)
         }}
         >{({isSubmitting})=>(
