@@ -27,8 +27,8 @@ export const postItems = async (values: AddItemType[], tableId: string | undefin
     })
 }
 export const getItems = async (id: string | undefined, setTable: React.Dispatch<React.SetStateAction<Table>>) => {
+
   const csrfToken = Cookies.get("x-csrf-token")?.toString()
-  const bodyReq = JSON.stringify({ tableId: id })
   await fetch(backendURL + "/table/item/" + id, {
     method: "GET", headers: {
       'Content-Type': 'application/json',
@@ -46,5 +46,34 @@ export const getItems = async (id: string | undefined, setTable: React.Dispatch<
       }
     })
 }
+interface dataUpdate {
+  tableId: string,
+  itemId: string,
+  newItem: {
+    stock: number,
+    price: number,
+    name: string
+  }
+}
+export const updateItems = async (data: dataUpdate) => {
+  const csrfToken = Cookies.get("x-csrf-token")?.toString()
+  const bodyReq = JSON.stringify(data)
+  await fetch(backendURL + "/table/item", {
+    method: "PUT", body: bodyReq, headers: {
+      'Content-Type': 'application/json',
+      'x-csrf-token': csrfToken || ""
+    }, credentials: "include"
+  })
 
+    .then(handleFetchErrors)
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => {
+      if (error instanceof TypeError) {
+        console.error("error Network: " + error)
+      } else {
+        console.error("Error: " + error)
+      }
+    })
+}
 

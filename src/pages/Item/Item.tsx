@@ -2,11 +2,16 @@ import { useParams } from "react-router-dom"
 import AddItem from "./component/AddItem"
 import { useEffect, useState } from "react"
 import { getItems } from "./utils/itemUtils"
+import ItemComponent from "./component/ItemComponent"
 
 export interface Table {
   tableId: string,
   tableName: string,
-  items: object[]
+  items: {
+    name: string,
+    stock: number,
+    price: number
+  }[]
 }
 
 function Item() {
@@ -25,6 +30,10 @@ function Item() {
       <h1>{table?.tableName}</h1>
       <h2>Id:{id}</h2>
       <h2>table</h2>
+      {table?.items.map((item) => {
+        console.log(item)
+        return <ItemComponent name={item.name} stock={item.stock} price={item.price} />
+      })}
       <AddItem />
     </>
   )
