@@ -1,7 +1,11 @@
+import { updateItems } from "../utils/itemUtils"
+
 interface Props {
   name: string,
   stock: number,
   price: number
+  tableId: string,
+  itemId: string
 }
 function ItemComponent(data: Props) {
   return (
@@ -9,7 +13,14 @@ function ItemComponent(data: Props) {
       <h3>{data.name}</h3>
       <h3>{data.stock}</h3>
       <h3>{data.price}</h3>
-      <button>Update</button>
+      <button onClick={async () => {
+        const newItem = {
+          name: data.name + "modified",
+          stock: data.stock - 1,
+          price: data.price,
+        }
+        await updateItems({ tableId: data.tableId, itemId: data.itemId, newItem })
+      }}>Update</button>
     </>
   )
 }

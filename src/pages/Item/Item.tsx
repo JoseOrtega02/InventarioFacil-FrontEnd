@@ -10,7 +10,8 @@ export interface Table {
   items: {
     name: string,
     stock: number,
-    price: number
+    price: number,
+    _id: string
   }[]
 }
 
@@ -32,7 +33,7 @@ function Item() {
       <h2>table</h2>
       {table?.items.map((item) => {
         console.log(item)
-        return <ItemComponent name={item.name} stock={item.stock} price={item.price} />
+        return <ItemComponent name={item.name} stock={item.stock} price={item.price} tableId={id || ""} itemId={item._id} />
       })}
       <AddItem />
     </>
