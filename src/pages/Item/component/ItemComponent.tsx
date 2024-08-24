@@ -1,4 +1,4 @@
-import { updateItems } from "../utils/itemUtils"
+import { deleteItems, updateItems } from "../utils/itemUtils"
 
 interface Props {
   name: string,
@@ -21,6 +21,9 @@ function ItemComponent(data: Props) {
         }
         await updateItems({ tableId: data.tableId, itemId: data.itemId, newItem })
       }}>Update</button>
+      <button onClick={async () => {
+        await deleteItems({ tableId: data.tableId, itemId: data.itemId })
+      }}>Delete</button>
     </>
   )
 }

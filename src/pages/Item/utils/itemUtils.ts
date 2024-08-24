@@ -77,3 +77,27 @@ export const updateItems = async (data: dataUpdate) => {
     })
 }
 
+interface DeleteItems {
+  tableId: string,
+  itemId: string
+}
+export const deleteItems = async (data: DeleteItems) => {
+  const csrfToken = Cookies.get("x-csrf-token")
+  const bodyReq = JSON.stringify(data)
+  await fetch(backendURL + "/table/item", {
+    method: "DELETE", body: bodyReq, headers: {
+      'Content-Type': 'application/json',
+      'x-csrf-token': csrfToken || ""
+    }, credentials: "include"
+  })
+    .then(handleFetchErrors)
+    .then((res) => res.json())
+    .then(data => console.log(data))
+    .catch(error => {
+      if (error instanceof TypeError) {
+        console.error("error Network: " + error)
+      } else {
+        console.error("Error: " + error)
+      }
+    })
+}
