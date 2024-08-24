@@ -11,7 +11,7 @@ export interface Table {
     name: string,
     stock: number,
     price: number,
-    _id: string
+    itemId: string
   }[]
 }
 
@@ -25,15 +25,13 @@ function Item() {
   useEffect(() => {
     getItems(id, setTable)
   }, [])
-  console.log(table)
   return (
     <>
       <h1>{table?.tableName}</h1>
       <h2>Id:{id}</h2>
       <h2>table</h2>
       {table?.items.map((item) => {
-        console.log(item)
-        return <ItemComponent name={item.name} stock={item.stock} price={item.price} tableId={id || ""} itemId={item._id} />
+        return <ItemComponent data={{ ...item, tableId: id || "" }} />
       })}
       <AddItem />
     </>
