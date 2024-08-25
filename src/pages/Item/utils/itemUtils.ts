@@ -1,3 +1,4 @@
+import { TableAdapter } from "../../../utils/Adapters/TableAdapters";
 import { handleFetchErrors } from "../../../utils/utils";
 import { Table } from "../Item";
 import { AddItemType } from "../YupSchemas/ItemYupSchema";
@@ -37,7 +38,10 @@ export const getItems = async (id: string | undefined, setTable: React.Dispatch<
   })
     .then(handleFetchErrors)
     .then(res => res.json())
-    .then(data => setTable(data))
+    .then(data => {
+      const table = TableAdapter(data)
+      setTable(table)
+    })
     .catch(error => {
       if (error instanceof TypeError) {
         console.error("error Network: " + error)

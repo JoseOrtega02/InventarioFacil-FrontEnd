@@ -3,6 +3,7 @@ import AddItem from "./component/AddItem"
 import { useEffect, useState } from "react"
 import { getItems } from "./utils/itemUtils"
 import ItemComponent from "./component/ItemComponent"
+import { itemAdapter } from "../../utils/Adapters/ItemAdapters"
 
 export interface Table {
   tableId: string,
@@ -11,7 +12,8 @@ export interface Table {
     name: string,
     stock: number,
     price: number,
-    itemId: string
+    _id: string
+    __v: number
   }[]
 }
 
@@ -30,7 +32,8 @@ function Item() {
       <h1>{table?.tableName}</h1>
       <h2>Id:{id}</h2>
       <h2>table</h2>
-      {table?.items.map((item) => {
+      {table?.items.map((itemRaw) => {
+        const item = itemAdapter(itemRaw)
         return <ItemComponent data={{ ...item, tableId: id || "" }} />
       })}
       <AddItem />
