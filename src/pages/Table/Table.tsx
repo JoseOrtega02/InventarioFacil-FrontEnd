@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import CreateTable from "./Components/CreateTable"
-import { fetchTables } from "./utils/tableUtils";
+import { deleteTable, fetchTables } from "./utils/tableUtils";
 import DeleteTable from "./Components/DeleteTable";
 import { Link } from "react-router-dom";
 import { TableAdapter } from "../../utils/Adapters/TableAdapters";
+import { ItemInterface } from "../../utils/Adapters/ItemAdapters";
 
-interface TableData {
+export interface TableData {
   _id: string;
   owner: string;
   tableName: string;
-  items: object[];
+  items: ItemInterface[];
   __v: number
 }
 function Table() {
@@ -23,7 +24,7 @@ function Table() {
       {tables && tables.length !== 0 ? (
         tables.map((tableRaw) => {
           const table = TableAdapter(tableRaw)
-          return <Link to={`${table.tableId}`} key={table.tableId}>{table.tableName}</Link>
+          return <><Link to={`${table.tableId}`} key={table.tableId}>{table.tableName}</Link> <button onClick={() => deleteTable({ tableId: table.tableId })}>Delete</button></>
         })
       ) : (
         "No tables"

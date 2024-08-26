@@ -47,9 +47,8 @@ export const fetchTables = async (setTables: React.Dispatch<React.SetStateAction
 
 export const deleteTable = async (values: DeleteTable) => {
   const csrfToken = Cookies.get("x-csrf-token")?.toString()
-
   const bodyStringify = JSON.stringify(values)
-  await fetch(urlBackend + "/table/delete", {
+  await fetch(urlBackend + "/table/delete/" + values.tableId, {
     method: "DELETE", body: bodyStringify, headers: {
       'Content-Type': 'application/json',
       "x-csrf-token": csrfToken || ""
@@ -87,3 +86,10 @@ export const updateTable = async (values: UpdateTable) => {
       }
     })
 }
+//interface DeleteTable{
+//  tableId:string
+//}
+//export  const deleteTable = async (values:DeleteTable) =>{
+//  const csrfToken = Cookies.get("x-csrf-token")?.toString()
+//  await fetch(urlBackend + "/table/delete")
+//}
