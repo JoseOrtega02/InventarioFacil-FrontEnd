@@ -12,30 +12,34 @@ import { PrivateRoute } from './components/privateRoute/PrivateRoute.tsx';
 import Dashboard from './pages/Dashboard/Dashboard.tsx';
 import Table from './pages/Table/Table.tsx';
 import Item from './pages/Item/Item.tsx';
+import Sales from './pages/Sales/Sales.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
     children:
-    [{
-      path:"login",
-      element: <Login/>
-    },{
-      path:"register",
-      element: <Register/>
-    },{
-      path:"dashboard",
-      element:<PrivateRoute component={Dashboard}/>,
-      children:[{
-        path:"tables",
-        element: <Table/>,
-        
-      },{
-        path:"tables/:id",
-        element:<Item/>
+      [{
+        path: "login",
+        element: <Login />
+      }, {
+        path: "register",
+        element: <Register />
+      }, {
+        path: "dashboard",
+        element: <PrivateRoute component={Dashboard} />,
+        children: [{
+          path: "tables",
+          element: <Table />,
+
+        }, {
+          path: "tables/:id",
+          element: <Item />
+        }]
+      }, {
+        path: "sales",
+        element: <Sales />
       }]
-    }]
   },
 ]);
 
