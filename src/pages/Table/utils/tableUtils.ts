@@ -1,5 +1,5 @@
 import { handleFetchErrors } from "../../../utils/utils"
-import { TableData } from "../Table"
+import { TableData } from "../Interfaces/TableData"
 import { CreateTable, DeleteTable, UpdateTable } from "../yupSchemas/tableSchema"
 import Cookies from "js-cookie"
 const urlBackend = import.meta.env.VITE_BACKEND_URL
@@ -86,10 +86,3 @@ export const updateTable = async (values: UpdateTable) => {
       }
     })
 }
-//interface DeleteTable{
-//  tableId:string
-//}
-//export  const deleteTable = async (values:DeleteTable) =>{
-//  const csrfToken = Cookies.get("x-csrf-token")?.toString()
-//  await fetch(urlBackend + "/table/delete")
-//}

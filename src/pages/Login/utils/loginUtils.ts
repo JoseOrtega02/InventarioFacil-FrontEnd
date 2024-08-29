@@ -39,7 +39,6 @@ export const logOutFetch = async () => {
       'Content-Type': 'application/json',
       "x-csrf-token": csrfToken || ""
     },
-    credentials:"include"
   })
     .then(handleFetchErrors)
     .then(data => console.log(data))

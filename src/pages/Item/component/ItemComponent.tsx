@@ -1,15 +1,6 @@
 import { deleteItems, updateItems } from "../utils/itemUtils"
+import { Props } from "../Interfaces/Props"
 
-interface Props {
-  data: {
-
-    name: string,
-    stock: number,
-    price: number
-    tableId: string,
-    itemId: string
-  }
-}
 function ItemComponent({ data }: Props) {
   return (
     <>

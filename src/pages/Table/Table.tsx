@@ -4,15 +4,8 @@ import { deleteTable, fetchTables } from "./utils/tableUtils";
 import DeleteTable from "./Components/DeleteTable";
 import { Link } from "react-router-dom";
 import { TableAdapter } from "../../utils/Adapters/TableAdapters";
-import { ItemInterface } from "../../utils/Adapters/ItemAdapters";
+import { TableData } from "./Interfaces/TableData";
 
-export interface TableData {
-  _id: string;
-  owner: string;
-  tableName: string;
-  items: ItemInterface[];
-  __v: number
-}
 function Table() {
   const [tables, setTables] = useState<Array<TableData>>([])
   useEffect(() => {

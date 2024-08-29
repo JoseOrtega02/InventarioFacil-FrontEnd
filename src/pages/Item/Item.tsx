@@ -4,18 +4,8 @@ import { useEffect, useState } from "react"
 import { getItems } from "./utils/itemUtils"
 import ItemComponent from "./component/ItemComponent"
 import { itemAdapter } from "../../utils/Adapters/ItemAdapters"
+import { Table } from "./Interfaces/Table"
 
-export interface Table {
-  tableId: string,
-  tableName: string,
-  items: {
-    name: string,
-    stock: number,
-    price: number,
-    _id: string
-    __v: number
-  }[]
-}
 
 function Item() {
   const { id } = useParams()

@@ -1,12 +1,5 @@
-import { ItemInterface } from "./ItemAdapters"
+import { tableInterface } from "./tableInterface"
 
-interface tableInterface {
-  _id: string,
-  owner: string,
-  tableName: string,
-  items: ItemInterface[],
-  __v: number
-}
 export const TableAdapter = (table: tableInterface) => {
   const newTable = {
     tableId: table._id,

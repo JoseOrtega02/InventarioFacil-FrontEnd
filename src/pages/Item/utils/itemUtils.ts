@@ -1,6 +1,6 @@
 import { TableAdapter } from "../../../utils/Adapters/TableAdapters";
 import { handleFetchErrors } from "../../../utils/utils";
-import { Table } from "../Item";
+import { Table } from "../Interfaces/Table";
 import { AddItemType } from "../YupSchemas/ItemYupSchema";
 import Cookies from "js-cookie";
 const backendURL = import.meta.env.VITE_BACKEND_URL
