@@ -5,6 +5,7 @@ import { getItems } from "./utils/itemUtils"
 import ItemComponent from "./component/ItemComponent"
 import { itemAdapter } from "../../utils/Adapters/ItemAdapters"
 import { Table } from "./Interfaces/Table"
+import { useSaleStore } from "../zustand/itemsSalesState"
 
 
 function Item() {
@@ -17,6 +18,7 @@ function Item() {
   useEffect(() => {
     getItems(id, setTable)
   }, [])
+  const sales = useSaleStore(state => state.items)
   return (
     <>
       <h1>{table?.tableName}</h1>
@@ -26,6 +28,8 @@ function Item() {
         const item = itemAdapter(itemRaw)
         return <ItemComponent data={{ ...item, tableId: id || "" }} />
       })}
+      <h2>Sales items:</h2>
+      {sales?.map(item => <h1>{item.itemId}</h1>)}
       <AddItem />
     </>
   )

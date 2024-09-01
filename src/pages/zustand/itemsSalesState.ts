@@ -10,7 +10,7 @@ interface SaleState {
   items: ItemInterface[],
   addItem: (by: ItemInterface) => void
 }
-const useSaleStore = create<SaleState>()(persist((set, get) => ({
+export const useSaleStore = create<SaleState>()(persist((set, get) => ({
   items: [],
   addItem: (by) => set(() => ({ items: [...get().items, by] }))
 }), {
