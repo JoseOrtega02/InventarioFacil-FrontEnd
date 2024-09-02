@@ -1,8 +1,9 @@
+import React from "react"
 import { handleFetchErrors } from "../../../utils/utils"
 import Cookies from "js-cookie"
 const url = import.meta.env.VITE_BACKEND_URL
 
-export const getSales = async () => {
+export const getSales = async (setData: React.Dispatch<React.SetStateAction<any>>) => {
   await fetch(url + "/sale", {
     method: "GET", headers: {
       'Content-Type': 'application/json',
@@ -10,7 +11,7 @@ export const getSales = async () => {
   })
     .then(handleFetchErrors)
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => setData(data))
     .catch(err => {
       if (err instanceof TypeError) {
         console.log("Network error: " + err)
@@ -31,8 +32,10 @@ interface postInterface {
 }
 export const postSale = async (data: postInterface) => {
   const csrfToken = Cookies.get("x-csrf-token")?.toString()
+  console.log(JSON.stringify(data))
+  const body = JSON.stringify(data)
   await fetch(url + "/sale", {
-    method: "POST", body: JSON.stringify(data), headers: {
+    method: "POST", body: body, headers: {
       'x-csrf-token': csrfToken || "",
       'Content-Type': 'application/json',
     }, credentials: "include"

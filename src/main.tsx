@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard/Dashboard.tsx';
 import Table from './pages/Table/Table.tsx';
 import Item from './pages/Item/Item.tsx';
 import Sales from './pages/Sales/Sales.tsx';
+import MakeSale from './pages/MakeSale/MakeSale.tsx';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,9 @@ const router = createBrowserRouter([
       }, {
         path: "sales",
         element: <Sales />
+      }, {
+        path: "make-sale",
+        element: <MakeSale />
       }]
   },
 ]);

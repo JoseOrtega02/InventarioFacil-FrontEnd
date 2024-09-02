@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-
-interface ItemInterface {
+// modularize this
+export interface ItemInterface {
   itemId: string,
   quantity: number,
   tableId: string
