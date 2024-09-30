@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle"
 import { logOutFetch } from "../../pages/Login/utils/loginUtils"
 
 
@@ -7,6 +8,7 @@ function Navbar() {
       <img src="#" alt="logo" />
       <button type="button">Hamburger</button>
       <button onClick={() => { logOutFetch() }}>LogOut</button>
+      <ModeToggle />
     </nav>
   )
 }
