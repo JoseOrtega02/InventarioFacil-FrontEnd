@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -14,7 +13,11 @@ import Table from './pages/Table/Table.tsx';
 import Item from './pages/Item/Item.tsx';
 import Sales from './pages/Sales/Sales.tsx';
 import MakeSale from './pages/MakeSale/MakeSale.tsx';
-
+import "primereact/resources/themes/arya-orange/theme.css"
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
+import 'primereact/resources/primereact.css';
+import { PrimeReactProvider } from 'primereact/api';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,6 +52,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <PrimeReactProvider>
+
+      <RouterProvider router={router} />
+    </PrimeReactProvider>
   </React.StrictMode>,
 )

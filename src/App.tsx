@@ -1,27 +1,23 @@
-import { Button } from "@/components/ui/button"
-
+import { Button } from 'primereact/button';
 import { Outlet } from 'react-router-dom'
-import './App.css'
 import Footer from './components/footer/Footer'
 import Navbar from './components/navbar/Navbar'
-import { ThemeProvider } from "@/components/theme-provider"
-
+import { PrimeReactProvider } from 'primereact/api';
 function App() {
 
 
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
 
 
-      <>
-        <Navbar />
-        <Outlet />
-        <Footer />
-        <Button >Button</Button>
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+      <div className="card flex justify-content-center">
+        <Button label="Check" icon="pi pi-check" />
+      </div>
+    </>
 
-      </>
-
-    </ThemeProvider>
   )
 }
 
