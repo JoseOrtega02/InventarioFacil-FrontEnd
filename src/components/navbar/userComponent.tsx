@@ -31,7 +31,7 @@ function UserComponent() {
           }} />
         </div>
       ) : (
-        <Link to="/login" className="p-button font-bold no-underline" target="_blank" rel="noopener noreferrer" >Log in</Link>
+        <Link to="/login" className="p-button font-bold no-underline"  >Log in</Link>
       )
       }
     </>
