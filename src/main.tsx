@@ -15,12 +15,17 @@ import Sales from './pages/Sales/Sales.tsx';
 import MakeSale from './pages/MakeSale/MakeSale.tsx';
 import "./index.css"
 import '../styled-system/styles.css'
+import Home from './pages/Home/Home.tsx';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children:
       [{
+        path: "/home",
+        element: <Home />
+      }
+        , {
         path: "login",
         element: <Login />
       }, {

@@ -2,7 +2,7 @@ import { styled } from "@/styled-system/jsx"
 const FooterContainer = styled.footer`
 display:flex;
 justify-content: start;
-padding:24px;
+padding:55px;
 height: 90px;
 background-color: token(colors.color2);
 align-items:center;
