@@ -1,9 +1,35 @@
-import svg from "@/logo.svg"
+import svg from "@/public/logo.svg"
+import { LinksContainer } from "./containers"
+import { styled } from "@/styled-system/jsx"
+import { Link } from "react-router-dom"
+const Container = styled.div`
+display: flex;
+gap:65px;
+align-items:center;
+`
+const NavLink = styled.button`
+&:hover{cursor:pointer;
+}
+`
 function Navlinks() {
   return (
-    <div>
+    <Container >
       <img src={svg} />
-    </div>
+      <LinksContainer>
+
+        <Link to="/">
+          <NavLink>Home</NavLink>
+        </Link>
+
+        <Link to="/dashboard/tables">
+          <NavLink>Tables</NavLink>
+        </Link>
+
+        <Link to="/sales">
+          <NavLink>Sales</NavLink>
+        </Link>
+      </LinksContainer>
+    </Container>
   )
 }
 
