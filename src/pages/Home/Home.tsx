@@ -1,10 +1,12 @@
 import { MainContainer } from "./components/mainContainer"
+import image from "@/public/image-home.jpg"
+import TextContainer from "./components/textContainer"
 
 function Home() {
   return (
     <MainContainer>
-      <h1>hola</h1>
-      <button>Empezar</button>
+      <img src={image} />
+      <TextContainer />
     </MainContainer>
   )
 }
