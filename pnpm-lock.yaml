@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/krona-one':
+        specifier: ^5.1.0
+        version: 5.1.0
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.1.1
         version: 2.1.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -525,6 +528,9 @@ packages:
 
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
+
+  '@fontsource/krona-one@5.1.0':
+    resolution: {integrity: sha512-79rKfvOrH+bahevvxTBN9eajMGV4vkskMQY/+7Q7sXer8IPGL/8swzj9FDHVIjltZtwMhRBCr0z7L+RIuaBFqw==}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -2788,6 +2794,8 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
 
   '@floating-ui/utils@0.2.8': {}
+
+  '@fontsource/krona-one@5.1.0': {}
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:

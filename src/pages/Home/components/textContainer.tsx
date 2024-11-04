@@ -6,11 +6,12 @@ justify-content: center;
 gap: 40%;
 `
 const Title = styled.h1`
-font-size:48px;
+font-size:42px;
 max-width:500px;
+font-family: 'Krona One', sans-serif;
 `
 const Button = styled.button`
-
+font-family: 'PT Sans Narrow', sans-serif;
 padding: 14px 35px;
 height: min-content;
 background-color: token(colors.color4) ;

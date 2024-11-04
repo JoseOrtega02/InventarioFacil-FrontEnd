@@ -11,6 +11,9 @@
     "prepare": "panda codegen"
   },
   "dependencies": {
+    "@fontsource/krona-one": "^5.1.0",
+    "@fontsource/pt-sans-narrow": "^5.1.0",
+    "@fontsource/sarala": "^5.1.0",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-navigation-menu": "^1.2.1",
     "@radix-ui/react-slot": "^1.1.0",

@@ -8,6 +8,7 @@ gap:65px;
 align-items:center;
 `
 const NavLink = styled.button`
+font-family: 'PT Sans Narrow', sans-serif;
 &:hover{cursor:pointer;
 }
 `

@@ -16,6 +16,9 @@ import MakeSale from './pages/MakeSale/MakeSale.tsx';
 import "./index.css"
 import '../styled-system/styles.css'
 import Home from './pages/Home/Home.tsx';
+import '@fontsource/krona-one';
+import '@fontsource/pt-sans-narrow';
+import '@fontsource/sarala';
 const router = createBrowserRouter([
   {
     path: "/",

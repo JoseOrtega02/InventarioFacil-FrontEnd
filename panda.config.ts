@@ -1,6 +1,15 @@
 import { defineConfig } from "@pandacss/dev";
-
 export default defineConfig({
+  globalFontface: {
+    title: {
+      src: 'url(https://fonts.googleapis.com/css2?family=Krona+One&display=swap)',
+      fontWeight: 400,
+      fontStyle: 'normal',
+    }
+  },
+  globalVars: {
+    '--font-krona-one': 'Krona One, sans-serif'
+  },
   theme: {
     extend: {
       tokens: {
@@ -11,9 +20,9 @@ export default defineConfig({
           color4: { value: '#ED7D31' }
         },
         fonts: {
-          body: { value: 'system-ui, sans-serif' }
+          title: { value: ['Krona One', "sans-serif"] },
         }
-      }
+      },
     }
   },
 
