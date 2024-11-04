@@ -18,7 +18,7 @@ function Navlinks() {
       <img src={svg} />
       <LinksContainer>
 
-        <Link to="/">
+        <Link to="/home">
           <NavLink>Home</NavLink>
         </Link>
 

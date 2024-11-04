@@ -1,4 +1,5 @@
 import { styled } from "@/styled-system/jsx"
+import { useNavigate } from "react-router-dom"
 const ContainerText = styled.div`
 display: flex;
 flex-direction:column;
@@ -21,10 +22,11 @@ color:white;
 &:hover{cursor:pointer;}
 `
 function TextContainer() {
+  const navigate = useNavigate()
   return (
     <ContainerText>
       <Title>Mantene tu stock siempre en orden y potencia tu negocio</Title>
-      <Button>Start</Button>
+      <Button onClick={() => navigate("/dashboard/tables")}>Start</Button>
     </ContainerText>
   )
 }

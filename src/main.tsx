@@ -39,18 +39,18 @@ const router = createBrowserRouter([
         element: <PrivateRoute component={Dashboard} />,
         children: [{
           path: "tables",
-          element: <Table />,
+          element: <PrivateRoute component={Table} />,
 
         }, {
           path: "tables/:id",
-          element: <Item />
+          element: <PrivateRoute component={Item} />
         }]
       }, {
         path: "sales",
-        element: <Sales />
+        element: <PrivateRoute component={Sales} />
       }, {
         path: "make-sale",
-        element: <MakeSale />
+        element: <PrivateRoute component={MakeSale} />
       }]
   },
 ]);
