@@ -1,58 +1,12 @@
-import { ErrorMessage, Field, Form, Formik, } from "formik"
+import { Field, Form, Formik, } from "formik"
 import { userSchemaLogin } from "./schemaYup/UserSchema";
 import { loginFetch } from "./utils/loginUtils";
 import { getCRSFToken } from "../../utils/utils";
-import { styled } from "@/styled-system/jsx";
 import img from "@/public/login-image.jpg"
 import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import { css } from "@/styled-system/css";
-const Container = styled.div`
-display:flex;
-flex-direction:row;
-gap:10px;
-padding: 55px 24px;
-`
-const Image = styled.img`
-border-radius: 24px;
-`
-const StyleContainerForm = styled.div`
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-content:center;
-background-color: token(colors.color3);
-width: 100%;
-border-radius:24px;
-padding: 24px 85px;
-gap: 65px;
-`
-const Title = styled.div`
-font-family: 'Krona One', sans-serif;
-font-size: 36px;
-color:white;
-`
-const Input = styled.div`
-display:flex;
-flex-direction: column;
-`
-const TextInput = styled.input`
-background-color: token(colors.color1);
-padding: 12px 8px;
-font-size:18px;
-color: token(colors.color2);
-font-family: 'PT Sans Narrow', sans-serif;
-border-radius: 24px;
-`
-const LabelInput = styled.label`
-color:white;
-font-family: 'PT Sans Narrow', sans-serif;
-font-size: 24px;
-`
-const ErrorMessageStyled = styled.h4`
-color:red;
-font-family: 'Sarala', sans-serif;
-font-size:14px;
-`
+import { Container, Input, StyleContainerForm } from "./components/containers";
+import { Title, LabelInput, TextInput, ErrorMessageStyled, Image } from "./components/inputComponents";
 const FormClassName = css`
 display: flex;
     flex-direction: column;
