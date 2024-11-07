@@ -4,7 +4,9 @@ const ContainerText = styled.div`
 display: flex;
 flex-direction:column;
 justify-content: center;
-gap: 40%;
+padding-top:32px;
+padding-bottom:32px;
+gap: 100px;
 `
 const Title = styled.h1`
 font-size:42px;

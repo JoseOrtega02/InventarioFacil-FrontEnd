@@ -4,15 +4,9 @@ import { loginFetch } from "./utils/loginUtils";
 import { getCRSFToken } from "../../utils/utils";
 import img from "@/public/login-image.jpg"
 import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
-import { css } from "@/styled-system/css";
 import { Container, Input, StyleContainerForm } from "./components/containers";
 import { Title, LabelInput, TextInput, ErrorMessageStyled, Image } from "./components/inputComponents";
-const FormClassName = css`
-display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 35px;
-`
+import { FormClassName } from "./components/classComponents";
 
 function Login() {
   return (<Container>
