@@ -6,6 +6,8 @@ import ItemComponent from "./component/ItemComponent"
 import { itemAdapter } from "../../utils/Adapters/ItemAdapters"
 import { Table } from "./Interfaces/Table"
 import { useSaleStore } from "../zustand/itemsSalesState"
+import { TitleBlack } from "@/src/components/styledComponents/Texts"
+import TableComponent from "./component/TableComponent"
 
 
 function Item() {
@@ -21,9 +23,10 @@ function Item() {
   const sales = useSaleStore(state => state.items)
   return (
     <>
-      <h1>{table?.tableName}</h1>
+      <TitleBlack>{table?.tableName}</TitleBlack>
       <h2>Id:{id}</h2>
       <h2>table</h2>
+      <TableComponent />
       {table?.items.map((itemRaw) => {
         const item = itemAdapter(itemRaw)
         return <ItemComponent data={{ ...item, tableId: id || "" }} />

@@ -1,5 +1,6 @@
 import { styled } from "@/styled-system/jsx"
 import { useNavigate } from "react-router-dom"
+import { Title } from "../../Login/components/inputComponents"
 const ContainerText = styled.div`
 display: flex;
 flex-direction:column;
@@ -7,11 +8,6 @@ justify-content: center;
 padding-top:32px;
 padding-bottom:32px;
 gap: 100px;
-`
-const Title = styled.h1`
-font-size:42px;
-max-width:500px;
-font-family: 'Krona One', sans-serif;
 `
 const Button = styled.button`
 font-family: 'PT Sans Narrow', sans-serif;
