@@ -33,7 +33,7 @@ function TableComponent() {
   };
   return (
     <div
-      style={{ height: 400, padding: "0px 12px" }} // the Data Grid will fill the size of the parent container
+      style={{ height: 350, padding: "0px 12px" }} // the Data Grid will fill the size of the parent container
     >
       <AgGridReact
         rowData={rowData}

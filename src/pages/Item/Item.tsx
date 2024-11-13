@@ -31,9 +31,10 @@ function Item() {
         const item = itemAdapter(itemRaw)
         return <ItemComponent data={{ ...item, tableId: id || "" }} />
       })}
+      <AddItem />
+
       <h2>Sales items:</h2>
       {sales?.map(item => <h1>{item.itemId}</h1>)}
-      <AddItem />
     </>
   )
 }
