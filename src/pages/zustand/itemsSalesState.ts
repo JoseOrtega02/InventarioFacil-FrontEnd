@@ -3,6 +3,8 @@ import { persist } from "zustand/middleware"
 // modularize this
 export interface ItemInterface {
   itemId: string,
+  price: number,
+  name: string,
   quantity: number,
   tableId: string
 }

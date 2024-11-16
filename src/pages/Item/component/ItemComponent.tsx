@@ -24,7 +24,9 @@ function ItemComponent({ data }: Props) {
         const saleBody = {
           tableId: data.tableId,
           quantity: 1,
-          itemId: data.itemId
+          itemId: data.itemId,
+          name: data.name,
+          price: data.price
         }
         addItem(saleBody)
       }}>Add to the sale </button>
