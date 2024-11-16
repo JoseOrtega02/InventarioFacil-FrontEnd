@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Buttons from "./coponents/Buttons";
 import { NavbarContainer } from "./coponents/containers";
 import Navlinks from "./coponents/Navlinks";
+import SaleCart from "./coponents/SaleCart";
 
 export default function Navbar() {
 
@@ -19,7 +20,7 @@ export default function Navbar() {
 
   return (<NavbarContainer>
     <Navlinks />
-    {user ? (<>Carrito</>) : (<Buttons></Buttons>)}
+    {user ? (<SaleCart />) : (<Buttons></Buttons>)}
   </NavbarContainer>
   )
 }
