@@ -4,6 +4,7 @@ import { iconSetQuartzBold, themeQuartz } from "@ag-grid-community/theming";
 export const myTheme: any = themeQuartz
   .withPart(iconSetQuartzBold)
   .withParams({
+    spacing: "12px",
     accentColor: "#ED7D31",
     backgroundColor: "#F6F1EE",
     browserColorScheme: "inherit",

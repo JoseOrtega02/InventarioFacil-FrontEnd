@@ -1,18 +1,19 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
 import { AddItemType, addItemSchema } from '../YupSchemas/ItemYupSchema';
 import { postItems } from '../utils/itemUtils';
 import { useParams } from 'react-router-dom';
-import { PrimaryButton, SecondaryButton } from '@/src/components/styledComponents/Buttons';
+import { PrimaryButton } from '@/src/components/styledComponents/Buttons';
 import { styled } from '@/styled-system/jsx';
 import { css } from '@/styled-system/css';
 import { Input } from '../../Login/components/containers';
 import { ErrorMessageStyled, LabelInput, TextInput } from '../../Login/components/inputComponents';
 
-interface AddItemForm {
+interface props {
   setItems: React.Dispatch<React.SetStateAction<AddItemType[]>>
+  close: React.Dispatch<React.SetStateAction<boolean>>
 }
-const ContainerPopUp = styled.div`
+export const ContainerPopUp = styled.div`
 position: absolute;
 top:0px;
 left:0px;
@@ -24,7 +25,7 @@ display:flex;
 justify-content: center;
 align-items:center;
 `
-const StyleForm = css`
+export const StyleForm = css`
 display:flex;
 flex-direction:column;
 align-self:center;
@@ -36,7 +37,7 @@ color:white;
 padding:20px;
 border-radius: 24px;
 `
-function AddItemForm(props: AddItemForm) {
+function AddItemForm({ setItems, close }: props) {
   return (<Formik
     initialValues={{
       name: "",
@@ -45,7 +46,7 @@ function AddItemForm(props: AddItemForm) {
     }}
     validationSchema={addItemSchema}
     onSubmit={(values, { setSubmitting }) => {
-      props.setItems((prevItems) => [
+      setItems((prevItems) => [
         ...prevItems,
         values
       ]);
@@ -53,7 +54,11 @@ function AddItemForm(props: AddItemForm) {
     }}
   >{({ isSubmitting, errors, touched }) => (
     <ContainerPopUp >
+
       <Form className={StyleForm}>
+        <div style={{ textAlign: "end" }}>
+          <PrimaryButton onClick={() => { close(false) }}> <h3>X</h3></PrimaryButton>
+        </div>
         <Input>
           <LabelInput htmlFor="name">Name:</LabelInput>
           <Field name="name" render={({ field /* { name, value, onChange, onBlur } */ }: any) => (
@@ -98,7 +103,7 @@ function AddItem() {
   const [items, setItems] = useState<AddItemType[]>([])
   const { id } = useParams()
   return (<>
-    {popState ? <AddItemForm setItems={setItems} /> : <></>}
+    {popState ? <AddItemForm setItems={setItems} close={setPop} /> : <></>}
     <PrimaryButton onClick={async () => {
       if (!popState) {
         setPop(true)
