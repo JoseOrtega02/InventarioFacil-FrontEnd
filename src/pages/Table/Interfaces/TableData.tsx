@@ -1,4 +1,5 @@
-import { ItemInterface } from "../../../utils/Adapters/ItemInterface";
+import { ItemInterface } from "@/src/utils/Adapters/Interfaces/ItemInterface";
+
 
 
 export interface TableData {
