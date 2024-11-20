@@ -31,7 +31,7 @@ export const fetchTables = async (setTables: React.Dispatch<React.SetStateAction
       const result = await response.json();
       setTables(result)
     } else {
-      console.log("failde to fetch")
+      console.log("error to fetch")
     }
 
   } catch (error) {
