@@ -17,7 +17,8 @@ flex-direction:row;
 gap:32px;
 border: 2px solid token(colors.color2);
 border-radius: 24px;
-padding: 12px 24px;
+padding: 8px 24px;
+font-size:24px;
 `
 
 const OptionsButton= styled.button`

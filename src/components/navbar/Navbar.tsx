@@ -1,9 +1,9 @@
 import { getUser } from "@/src/utils/utils";
 import { useState, useEffect } from "react";
-import Buttons from "./coponents/Buttons";
-import { NavbarContainer } from "./coponents/containers";
-import Navlinks from "./coponents/Navlinks";
-import SaleCart from "./coponents/SaleCart";
+import Buttons from "./components/Buttons";
+import { NavbarContainer } from "./components/containers";
+import Navlinks from "./components/Navlinks";
+import SaleCart from "./components/SaleCart";
 
 export default function Navbar() {
 
