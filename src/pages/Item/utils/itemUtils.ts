@@ -4,7 +4,14 @@ import { Table } from "../Interfaces/Table";
 import { AddItemType } from "../YupSchemas/ItemYupSchema";
 import Cookies from "js-cookie";
 const backendURL = import.meta.env.VITE_BACKEND_URL
-export const postItems = async (values: AddItemType[], tableId: string | undefined) => {
+
+interface newItem{
+  stock:number;
+  price:number;
+  name:string;
+}
+
+export const postItems = async (values: newItem[], tableId: string | undefined) => {
   const csrfToken = Cookies.get("x-csrf-token")?.toString()
   const body = JSON.stringify({
     tableId: tableId,

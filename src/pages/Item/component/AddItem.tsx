@@ -10,8 +10,9 @@ import { Input } from '../../Login/components/containers';
 import { ErrorMessageStyled, LabelInput, TextInput } from '../../Login/components/inputComponents';
 
 interface props {
-  setItems: React.Dispatch<React.SetStateAction<AddItemType[]>>
-  close: React.Dispatch<React.SetStateAction<boolean>>
+  setItems: React.Dispatch<React.SetStateAction<AddItemType[]>>;
+  close: React.Dispatch<React.SetStateAction<boolean>>;
+  tableId:string;
 }
 export const ContainerPopUp = styled.div`
 position: absolute;
@@ -37,7 +38,7 @@ color:white;
 padding:20px;
 border-radius: 24px;
 `
-function AddItemForm({ setItems, close }: props) {
+function AddItemForm({ setItems, close,tableId }: props) {
   return (<Formik
     initialValues={{
       name: "",
@@ -45,12 +46,15 @@ function AddItemForm({ setItems, close }: props) {
       price: 0
     }}
     validationSchema={addItemSchema}
-    onSubmit={(values, { setSubmitting }) => {
+    onSubmit={async (values, { setSubmitting }) => {
+      const payload= [values]
+await postItems(payload,tableId)
       setItems((prevItems) => [
         ...prevItems,
         values
       ]);
       setSubmitting(false)
+      close(false)
     }}
   >{({ isSubmitting, errors, touched }) => (
     <ContainerPopUp >
@@ -103,12 +107,10 @@ function AddItem() {
   const [items, setItems] = useState<AddItemType[]>([])
   const { id } = useParams()
   return (<>
-    {popState ? <AddItemForm setItems={setItems} close={setPop} /> : <></>}
+    {popState ? <AddItemForm setItems={setItems} close={setPop} tableId={id || ""} /> : <></>}
     <PrimaryButton onClick={async () => {
       if (!popState) {
         setPop(true)
-      } else {
-        await postItems(items, id)
       }
     }}>AddItem</PrimaryButton></>
   )

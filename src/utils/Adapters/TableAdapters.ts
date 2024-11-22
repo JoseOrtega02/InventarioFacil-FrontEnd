@@ -1,4 +1,4 @@
-import { tableInterface } from "./tableInterface"
+import { tableInterface } from "./Interfaces/tableInterface"
 
 export const TableAdapter = (table: tableInterface) => {
   const newTable = {
