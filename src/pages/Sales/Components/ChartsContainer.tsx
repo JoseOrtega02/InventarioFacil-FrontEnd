@@ -1,77 +1,20 @@
+import { generateChartOptions, generatePieChartOptions } from "../Utils/ChartsOptions";
 import { ReactEChartsProps, ReactECharts } from "./ReactECharts"
 interface props {
-  barsData: object,
-  pieData: object
+  barData: Array<{ month: string; quantity: number; totalAmount: number }> | undefined ,
+  pieData: Array<{itemId:string,quantity:number}> | undefined
 }
-function ChartsContainer() {
-  const option: ReactEChartsProps["option"] = {
-    tooltip: {
-      trigger: "axis",
-      axisPointer: {
-        type: "shadow",
-      },
-    },
-    legend: {
-      data: ["Owned", "Financed"],
-    },
-    xAxis: {
-      type: "category",
-      data: [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December",
-      ], // Months of the year
-    },
-    yAxis: {
-      type: "value",
-    },
-    series: [
-      {
-        name: "Owned",
-        data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 1000)), // Randomized total sales for 'Owned'
-        type: "bar",
-      },
-      {
-        name: "Financed",
-        data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 800)), // Randomized total sales for 'Financed'
-        type: "bar",
-      },
-    ],
-  };
-  const pieOption: ReactEChartsProps["option"] = {
-    tooltip: {
-      trigger: "item",
-    },
-    legend: {
-      orient: "vertical",
-      left: "left",
-    },
-    series: [
-      {
-        name: "Item Distribution",
-        type: "pie",
-        radius: "50%",
-        data: [
-          { value: 1048, name: "Search Engine" },
-          { value: 735, name: "Direct" },
-          { value: 580, name: "Email" },
-          { value: 484, name: "Union Ads" },
-          { value: 300, name: "Video Ads" },
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: "rgba(0, 0, 0, 0.5)",
-          },
-        },
-      },
-    ],
-  };
+function ChartsContainer({barData,pieData}:props) {
+  const option = generateChartOptions(barData)
+
+  const pieOption = generatePieChartOptions(pieData)
   return (
     <>
-
-      <ReactECharts option={option} />
-      <ReactECharts option={pieOption} />
+{option|| pieOption  ?(<>
+  <ReactECharts option={option} />
+<ReactECharts option={pieOption} /></>):(<>Error in the data</>)}
+      
+      
     </>
   )
 }

@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { getSales } from "./Utils/SalesUtils"
 import DeleteSale from "./Components/DeleteSale"
-import { ReactECharts, ReactEChartsProps } from "./Components/ReactECharts"
 import { TitleBlack } from "@/src/components/styledComponents/Texts"
 import ChartsContainer from "./Components/ChartsContainer"
 import { barsData, getItemSalesForPieChart, RawData } from "./Utils/CalculateStats"
@@ -20,7 +19,7 @@ function Sales() {
     <div>
 
       <TitleBlack>Your Sales:</TitleBlack>
-      <ChartsContainer />
+      <ChartsContainer barData={barData} pieData={pieData} />
       <DeleteSale />
     </div>
   )
