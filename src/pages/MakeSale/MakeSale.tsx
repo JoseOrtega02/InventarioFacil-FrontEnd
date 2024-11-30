@@ -48,25 +48,18 @@ color:white;
 function MakeSale() {
   const items = useSaleStore(state => state.items)
   const [total,setTotal] = useState<number>(0)
-  
+  console.log(items)
   useEffect(()=>{
     const calculateTotal= ()=>{
-    fakeItems.map((item)=>{
-
-      setTotal( (item.price*item.quantity) + total )
+      let total=0
+    items.map((item)=>{
+      total+=item.price*item.quantity
     })
+    setTotal(total)
   }
     calculateTotal()
-  },[])
-  const fakeItems = [
-    {
-      name: "random",
-      price: 2,
-      quantity: 3,
-      tableId: "aaaaaa",
-      itemId: "aaaaaaaaa"
-    }
-  ]
+  },[items])
+  
   function returnPayloadSale(items: ItemInterface[]) {
     return { saleItems: items }
   }
@@ -75,14 +68,14 @@ function MakeSale() {
    <ContainerKart>
        <TitleBlack>Your kart</TitleBlack>
       <div style={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center",gap:"12px"}}>
-      {fakeItems?.map((item) => <ItemComponent item={item} />)}
+      {items?.map((item) => <ItemComponent item={item} />)}
       <TotalContainer>
         <TotalText>Total:</TotalText>
 <TotalText>${total}</TotalText>
       </TotalContainer>
-      <MakeSaleButton  onClick={() => {
-        //const payload = returnPayloadSale(items)
-        ////////////////postSale(payload)
+      <MakeSaleButton  onClick={async () => {
+        const payload = returnPayloadSale(items)
+       await postSale(payload)
         console.log(items)
         alert("sale successful")
       }}>Make the sale</MakeSaleButton>

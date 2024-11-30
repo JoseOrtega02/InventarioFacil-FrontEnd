@@ -8,6 +8,8 @@ import { myTheme } from './TableTheme';
 import { PrimaryButton } from '@/src/components/styledComponents/Buttons';
 import { deleteItems } from '../utils/itemUtils';
 import { Item, UpdatePopUpItem } from './UpdatePopUpItem';
+import { itemAdapter } from '@/src/utils/Adapters/ItemAdapters';
+import { useSaleStore } from '../../zustand/itemsSalesState';
 
 
 
@@ -17,12 +19,10 @@ function CustomButton(props: ICellRendererParams) {
   const togglePopover = () => {
     setIsOpen((prev) => !prev);
   };
-
+const addItem = useSaleStore((state)=> state.addItem)
   const itemData: Item = props.data || { stock: 0, price: 0, name: "", id: ""};
 
-  function addItem(saleBody: { tableId: any; quantity: number; itemId: string; name: string; price: number; }) {
-    throw new Error('Function not implemented.');
-  }
+  
 
   return (
   <div style={{ display: 'flex', flexDirection: "row", gap: "8px", justifyContent: "center", alignItems: "center", height: "100%" }}>
@@ -49,14 +49,29 @@ function CustomButton(props: ICellRendererParams) {
 }
 
 interface Props{
-  items: Item[]
+  items: {
+    name: string,
+  price: number,
+  stock: number,
+  _id: string,
+  __v:number
+  }[]
   tableId:string
 }
 function TableComponent({tableId,items}:Props) {
-  const [rowData, setRowData] = useState<Item[]>(items);
-useEffect(()=>{
-  setRowData(items)
-},[])
+  const [rowData, setRowData] = useState<Item[] | undefined>();
+  console.log(rowData)
+  useEffect(()=>{
+    const itemsConverter=()=>{
+      const newItems:Item[]=[]
+      items.map((itemRaw) => {
+        const item = itemAdapter(itemRaw)
+        newItems.push(item)
+    })
+    setRowData(newItems)
+  }
+  itemsConverter()
+  },[])
   // Column Definitions: Defines & controls grid columns.
   const [colDefs, setColDefs] = useState<ColDef<Item>[]>([
     { field: 'name' },
