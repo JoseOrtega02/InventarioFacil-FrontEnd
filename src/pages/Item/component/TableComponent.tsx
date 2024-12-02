@@ -2,7 +2,7 @@ import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import {
   ICellRendererParams,
 } from "@ag-grid-community/core";
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { ColDef } from "ag-grid-community";
 import { myTheme } from './TableTheme';
 import { PrimaryButton } from '@/src/components/styledComponents/Buttons';
@@ -28,6 +28,12 @@ interface Props {
 
 function TableComponent({  items,setSelectedItem,setOpen }: Props) {
   const [rowData, setRowData] = useState<Item[] | undefined>();
+  const [quickFilterText, setQuickFilterText] = useState<string>();
+  const onFilterTextBoxChanged = useCallback(
+    ({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
+      setQuickFilterText(value),
+    []
+  );
   const { id}= useParams()
 const tableId = id || ""
   useEffect(() => {
@@ -111,12 +117,15 @@ const tableId = id || ""
 
   return (
     <div  style={{ height: 350, padding: "0px 12px" }}>
+      <input type='text' placeholder="Search product..."
+              onInput={onFilterTextBoxChanged} />
       <AgGridReact
         rowData={rowData}
         columnDefs={colDefs}
         defaultColDef={defaultColDef}
         theme={myTheme}
         context={{ tableId }}
+        quickFilterText={quickFilterText}
       />
     </div>
   );
