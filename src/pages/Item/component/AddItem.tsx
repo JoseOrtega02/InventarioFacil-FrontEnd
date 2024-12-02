@@ -63,6 +63,7 @@ await postItems(payload,tableId)
         <div style={{ textAlign: "end" }}>
           <PrimaryButton onClick={() => { close(false) }}> <h3>X</h3></PrimaryButton>
         </div>
+
         <Input>
           <LabelInput htmlFor="name">Name:</LabelInput>
           <Field name="name" render={({ field /* { name, value, onChange, onBlur } */ }: any) => (
@@ -72,6 +73,7 @@ await postItems(payload,tableId)
             <ErrorMessageStyled>{errors.name}</ErrorMessageStyled>
           ) : (<></>)}
         </Input>
+        
         <Input>
           <LabelInput htmlFor="stock">stock:</LabelInput>
           <Field render={({ field /* { name, value, onChange, onBlur } */ }: any) => (

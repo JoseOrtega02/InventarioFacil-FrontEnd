@@ -12,6 +12,7 @@ function Sales() {
   }, [])
   const barData= useMemo(()=> barsData(data),[data])
   const pieData = useMemo(()=> getItemSalesForPieChart(data),[data])
+  console.log(data)
   console.log(barData)
   console.log(pieData)
   return (

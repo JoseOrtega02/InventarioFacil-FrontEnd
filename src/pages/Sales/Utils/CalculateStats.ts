@@ -25,14 +25,17 @@ interface Item {
       const saleMonth = new Date(sale.date).toISOString().slice(0, 7); // Extract year and month in YYYY-MM format
       const existingMonthEntry = acc.find((entry) => entry.month === saleMonth);
   
+      // Calculate the total items sold in the sale
+      const itemsSold = sale.items.reduce((sum, item) => sum + item.quantity, 0);
+  
       if (existingMonthEntry) {
-        existingMonthEntry.quantity += 1; // Increment sale count
+        existingMonthEntry.quantity += itemsSold; // Increment total items sold
         existingMonthEntry.totalAmount += sale.totalAmount; // Add to total amount
       } else {
         // Add new month entry
         acc.push({
           month: saleMonth,
-          quantity: 1,
+          quantity: itemsSold, // Initialize with items sold
           totalAmount: sale.totalAmount,
         });
       }

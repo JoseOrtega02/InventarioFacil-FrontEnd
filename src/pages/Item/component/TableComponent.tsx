@@ -10,93 +10,116 @@ import { deleteItems } from '../utils/itemUtils';
 import { Item, UpdatePopUpItem } from './UpdatePopUpItem';
 import { itemAdapter } from '@/src/utils/Adapters/ItemAdapters';
 import { useSaleStore } from '../../zustand/itemsSalesState';
+import { useParams } from 'react-router-dom';
 
 
-
-function CustomButton(props: ICellRendererParams) {
-  const [isOpen, setIsOpen] = useState(false);
-  const tableId= props.context.tableId
-  const togglePopover = () => {
-    setIsOpen((prev) => !prev);
-  };
-const addItem = useSaleStore((state)=> state.addItem)
-  const itemData: Item = props.data || { stock: 0, price: 0, name: "", id: ""};
-
-  
-
-  return (
-  <div style={{ display: 'flex', flexDirection: "row", gap: "8px", justifyContent: "center", alignItems: "center", height: "100%" }}>
-    <PrimaryButton onClick={() => { togglePopover }}>Update</PrimaryButton>
-
-    {isOpen && (<UpdatePopUpItem item={itemData} tableId={tableId} />)}
-
-    <PrimaryButton onClick={async () => {
-        await deleteItems({ tableId: tableId, itemId: itemData.id })
-      }}>Delete</PrimaryButton>
-
-    <PrimaryButton onClick={() => {
-        const saleBody = {
-          tableId: tableId,
-          quantity: 1,
-          itemId: itemData.id,
-          name: itemData.name,
-          price: itemData.price
-        }
-        addItem(saleBody)
-      }}>Add to sale</PrimaryButton>
-
-  </div>)
-}
-
-interface Props{
+interface Props {
   items: {
-    name: string,
-  price: number,
-  stock: number,
-  _id: string,
-  __v:number
-  }[]
-  tableId:string
+    name: string;
+    price: number;
+    stock: number;
+    _id: string;
+    __v: number;
+  }[];
+  tableId: string;
+  setSelectedItem: Function;
+ setOpen:Function;
 }
-function TableComponent({tableId,items}:Props) {
+
+function TableComponent({  items,setSelectedItem,setOpen }: Props) {
   const [rowData, setRowData] = useState<Item[] | undefined>();
-  console.log(rowData)
-  useEffect(()=>{
-    const itemsConverter=()=>{
-      const newItems:Item[]=[]
+  const { id}= useParams()
+const tableId = id || ""
+  useEffect(() => {
+    const itemsConverter = () => {
+      const newItems: Item[] = [];
       items.map((itemRaw) => {
-        const item = itemAdapter(itemRaw)
-        newItems.push(item)
-    })
-    setRowData(newItems)
-  }
-  itemsConverter()
-  },[])
-  // Column Definitions: Defines & controls grid columns.
+         const item = itemAdapter(itemRaw);
+    
+       
+        newItems.push(item);
+      });
+      setRowData(newItems);
+    };
+    itemsConverter();
+  }, [items]);
+
+
+  const addItem = useSaleStore((state) => state.addItem);
+
+  const CustomButton = (props: ICellRendererParams) => {
+    const itemData: Item = props.data || { stock: 0, price: 0, name: "", id: "" };
+    
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: "8px",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
+        <PrimaryButton onClick={() =>{
+          setSelectedItem(itemData);
+          setOpen()}}>Update</PrimaryButton>
+
+        <PrimaryButton
+          onClick={async () => {
+            await deleteItems({ tableId, itemId: itemData.id });
+          }}
+        >
+          Delete
+        </PrimaryButton>
+
+        <PrimaryButton
+          onClick={() => {
+            const saleBody = {
+              tableId: tableId,
+              quantity: 1,
+              itemId: itemData.id,
+              name: itemData.name,
+              price: itemData.price,
+            };
+            addItem(saleBody);
+          }}
+        >
+          Add to sale
+        </PrimaryButton>
+
+      </div>
+    );
+  };
+
   const [colDefs, setColDefs] = useState<ColDef<Item>[]>([
-    { field: 'name' },
-    { field: 'price' },
-    {field:"stock"},
-    { field: 'id',headerName:"options", cellRenderer: CustomButton, pinned: "right", width: 370 },
+    { field: "name" },
+    { field: "price" },
+    { field: "stock" },
+    {
+      field: "id",
+      headerName: "options",
+      cellRenderer: CustomButton,
+      pinned: "right",
+      width: 540
+    },
   ]);
 
   const defaultColDef: ColDef = {
     flex: 1,
   };
-  const context = {tableId:tableId}
+
   return (
-    <div
-      style={{ height: 350, padding: "0px 12px" }} // the Data Grid will fill the size of the parent container
-    >
+    <div  style={{ height: 350, padding: "0px 12px" }}>
       <AgGridReact
         rowData={rowData}
         columnDefs={colDefs}
         defaultColDef={defaultColDef}
         theme={myTheme}
-        context={context}
+        context={{ tableId }}
       />
     </div>
-  )
+  );
 }
 
-export default TableComponent
+export default TableComponent;
