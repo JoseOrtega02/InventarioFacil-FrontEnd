@@ -12,8 +12,7 @@ gap:32px;
 align-items:center;
 margin-left:auto;
 margin-right:auto;
-width:80%;
-height: 60vh;
+
 justify-content:center;
 margin-top:24px;
 margin-bottom:24px;
@@ -68,7 +67,10 @@ function MakeSale() {
    <ContainerKart>
        <TitleBlack>Your kart</TitleBlack>
       <div style={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center",gap:"12px"}}>
-      {items?.map((item) => <ItemComponent item={item} />)}
+        <div style={{display:"flex",justifyContent:"center",flexDirection:"column",width:"100%",alignItems:"center",gap:"12px",overflowY:"scroll",maxHeight:"300px",paddingTop:"24px"}}>
+          {items?.map((item) => <ItemComponent item={item} />)}
+        </div>
+      
       <TotalContainer>
         <TotalText>Total:</TotalText>
 <TotalText>${total}</TotalText>

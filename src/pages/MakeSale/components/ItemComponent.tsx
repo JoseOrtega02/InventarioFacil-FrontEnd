@@ -15,10 +15,12 @@ interface props {
 const ItemContainer= styled.div`
 display:flex;
 align-items:center;
+justify-content:space-around;
 flex-direction:row;
 gap:32px;
 border: 2px solid token(colors.color2);
 border-radius: 24px;
+width:100%;
 padding: 8px 24px;
 font-size:24px;
 `

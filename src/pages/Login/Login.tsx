@@ -17,6 +17,12 @@ function Login() {
       onSubmit={async (values, { setSubmitting }) => {
         await getCRSFToken()
         await loginFetch(values)
+        .then(()=>{
+          alert("login Succesfull")
+        })
+        .catch(()=>{
+          alert("error login")
+        })
         setSubmitting(false);
       }}
     >
