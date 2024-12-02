@@ -7,8 +7,10 @@ import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import { Container, Input, StyleContainerForm } from "./components/containers";
 import { Title, LabelInput, TextInput, ErrorMessageStyled, Image } from "./components/inputComponents";
 import { FormClassName } from "./components/classComponents";
+import { useAuth } from "@/src/components/AuthProvider";
 
 function Login() {
+  const { setIsLoggedIn } = useAuth();
   return (<Container>
     <Image src={img} />
     <Formik
@@ -18,6 +20,7 @@ function Login() {
         await getCRSFToken()
         await loginFetch(values)
         .then(()=>{
+setIsLoggedIn(true)
           alert("login Succesfull")
         })
         .catch(()=>{
