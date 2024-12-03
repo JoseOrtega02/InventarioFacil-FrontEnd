@@ -12,12 +12,9 @@ import { Item as ItemInterface, UpdatePopUpItem } from "./component/UpdatePopUpI
 
 function Item() {
   const { id } = useParams()
-  const [isOpen, setIsOpen] = useState(false);
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemInterface | null>(null);
-  const togglePopover = () => {
-    setIsOpen((prev) => !prev);
-  };
+  
   const [table, setTable] = useState<Table>({
     tableId: "",
     tableName: "",
@@ -46,7 +43,7 @@ function Item() {
   />
 ) : null}
 
-      <div style={{width:"100%",display:"flex",justifyContent:"center",marginTop:"24px",marginBottom:"24px"}}>
+      <div style={{width:"100%",display:"flex",justifyContent:"center",marginTop:"36px",marginBottom:"24px"}}>
         <AddItem />
       </div>
       

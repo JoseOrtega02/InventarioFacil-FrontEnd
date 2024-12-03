@@ -7,6 +7,7 @@ import { LabelInput, TextInput, ErrorMessageStyled } from "../../Login/component
 import { props } from "../Table";
 import { updateTable } from "../utils/tableUtils";
 import { updateSchema } from "../yupSchemas/tableSchema";
+import CrossIcon from "@/src/components/styledComponents/CrossIcon";
 
 export function EditPopUp({ table, setClose }: props) {
   return (<Formik
@@ -20,7 +21,7 @@ export function EditPopUp({ table, setClose }: props) {
       <ContainerPopUp>
         <Form className={StyleForm}>
           <div style={{ textAlign: "end" }}>
-            <PrimaryButton onClick={() => { setClose(false); }}> <h3>X</h3></PrimaryButton>
+            <PrimaryButton onClick={() => { setClose(false); }}> <CrossIcon/></PrimaryButton>
           </div>
           <Input>
             <LabelInput htmlFor="name">Name:</LabelInput>

@@ -2,9 +2,10 @@ import { ItemInterface, useSaleStore } from '../zustand/itemsSalesState'
 import { postSale } from '../Sales/Utils/SalesUtils'
 import ItemComponent from './components/ItemComponent'
 import { styled } from '@/styled-system/jsx'
-import { Title, TitleBlack } from '@/src/components/styledComponents/Texts'
-import { PrimaryButton } from '@/src/components/styledComponents/Buttons'
+import {  TitleBlack } from '@/src/components/styledComponents/Texts'
+
 import { useEffect, useState } from 'react'
+import TicketIcon from '@/src/components/styledComponents/TicketIcon'
 const ContainerKart = styled.div`
 display:flex;
 flex-direction:column;
@@ -33,6 +34,9 @@ font-family: 'PT Sans Narrow', sans-serif;
 color:white;
 `
 const MakeSaleButton= styled.button`
+display:flex;
+align-items:center;
+justify-content:center;
 margin-top:24px;
 padding: 18px 28px;
 line-height: 12px;
@@ -80,7 +84,7 @@ function MakeSale() {
        await postSale(payload)
         console.log(items)
         alert("sale successful")
-      }}>Make the sale</MakeSaleButton>
+      }}><TicketIcon/>Make the sale</MakeSaleButton>
       </div>
       
     </ContainerKart>

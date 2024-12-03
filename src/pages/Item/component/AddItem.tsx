@@ -8,6 +8,7 @@ import { styled } from '@/styled-system/jsx';
 import { css } from '@/styled-system/css';
 import { Input } from '../../Login/components/containers';
 import { ErrorMessageStyled, LabelInput, TextInput } from '../../Login/components/inputComponents';
+import CreateIcon from '@/src/components/styledComponents/CreateIcon';
 
 interface props {
   setItems: React.Dispatch<React.SetStateAction<AddItemType[]>>;
@@ -114,7 +115,7 @@ function AddItem() {
       if (!popState) {
         setPop(true)
       }
-    }}>AddItem</PrimaryButton></>
+    }}><CreateIcon/>AddItem</PrimaryButton></>
   )
 }
 

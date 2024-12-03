@@ -1,7 +1,7 @@
 import { styled } from '@/styled-system/jsx'
-import svg from "@/public/options-vertical-svgrepo-com.svg"
 import { DeleteButton } from '../../Table/StyledComponents/Components'
 import { useSaleStore } from '../../zustand/itemsSalesState'
+import DeleteIcon from '@/src/components/styledComponents/DeleteIcon'
 interface props {
   item: {
     name: string,
@@ -25,15 +25,8 @@ padding: 8px 24px;
 font-size:24px;
 `
 
-const OptionsButton= styled.button`
-background-color: token(colors.color2);
-padding: 8px 10px;
-border-radius:24px;
-`
-const Icon = styled.img`
-width:18px;
-height: 20px;
-`
+
+
 function ItemComponent({ item }: props) {
 const deleteItem= useSaleStore(state => state.deleteItem)
   return (
@@ -41,7 +34,7 @@ const deleteItem= useSaleStore(state => state.deleteItem)
       <h4>{item.name}</h4>
       <h4>Units: {item.quantity}</h4>
       <h4>$ {item.price * item.quantity}</h4>
-      <DeleteButton onClick={()=>deleteItem(item.itemId)} >Delete</DeleteButton>
+      <DeleteButton onClick={()=>deleteItem(item.itemId)} ><DeleteIcon/></DeleteButton>
     </ItemContainer>
   )
 }

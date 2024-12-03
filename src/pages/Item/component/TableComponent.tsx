@@ -7,10 +7,13 @@ import { ColDef } from "ag-grid-community";
 import { myTheme } from './TableTheme';
 import { PrimaryButton } from '@/src/components/styledComponents/Buttons';
 import { deleteItems } from '../utils/itemUtils';
-import { Item, UpdatePopUpItem } from './UpdatePopUpItem';
+import { Item } from './UpdatePopUpItem';
 import { itemAdapter } from '@/src/utils/Adapters/ItemAdapters';
 import { useSaleStore } from '../../zustand/itemsSalesState';
 import { useParams } from 'react-router-dom';
+import { DeleteButton, EditButton } from '../../Table/StyledComponents/Components';
+import EditIcon from '@/src/components/styledComponents/EditIcon';
+import DeleteIcon from '@/src/components/styledComponents/DeleteIcon';
 
 
 interface Props {
@@ -67,18 +70,6 @@ const tableId = id || ""
           height: "100%",
         }}
       >
-        <PrimaryButton onClick={() =>{
-          setSelectedItem(itemData);
-          setOpen()}}>Update</PrimaryButton>
-
-        <PrimaryButton
-          onClick={async () => {
-            await deleteItems({ tableId, itemId: itemData.id });
-          }}
-        >
-          Delete
-        </PrimaryButton>
-
         <PrimaryButton
           onClick={() => {
             const saleBody = {
@@ -93,6 +84,19 @@ const tableId = id || ""
         >
           Add to sale
         </PrimaryButton>
+        <EditButton onClick={() =>{
+          setSelectedItem(itemData);
+          setOpen()}}><EditIcon/></EditButton>
+
+        <DeleteButton
+          onClick={async () => {
+            await deleteItems({ tableId, itemId: itemData.id });
+          }}
+        >
+          <DeleteIcon/>
+        </DeleteButton>
+
+        
 
       </div>
     );

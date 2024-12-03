@@ -1,6 +1,9 @@
 import { styled } from "@/styled-system/jsx"
 
 export const SecondaryButton = styled.button`
+display:flex;
+align-items:center;
+justify-content:center;
 padding: 14px 35px;
 line-height: 12px;
 height: min-content;
@@ -11,6 +14,9 @@ color: black;
 &:hover{cursor:pointer;}
 `
 export const PrimaryButton = styled.button`
+display:flex;
+align-items:center;
+justify-content:center;
 padding: 14px 35px;
 line-height: 12px;
 height: min-content;
@@ -19,4 +25,7 @@ background-color: token(colors.color4) ;
 border-radius:24px;
 color:white;
 &:hover{cursor:pointer;}
+`
+export const Icon = styled.img`
+width: 28px;
 `

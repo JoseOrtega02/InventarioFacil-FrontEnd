@@ -23,7 +23,7 @@ export const DeleteButton = styled.button`
 background-color: #B3261E;
 border-radius:24px;
 color:white;
-padding: 5px 10px;
+padding: 5px 15px;
 &:hover{
 cursor:pointer;
 background-opacity:20%;
@@ -34,7 +34,7 @@ export const EditButton = styled.button`
 background-color: token(colors.color2);
 border-radius:24px;
 color:white;
-padding: 5px 10px;
+padding: 5px 15px;
 &:hover{
 cursor:pointer;
 background-opacity:20%;
@@ -52,6 +52,8 @@ padding:12px 12px;
 export const ButtonsContainer = styled.div`
 
 display:flex;
+justify-content:center;
+align-items:center;
 flex-direction:row;
 gap: 10px;
 

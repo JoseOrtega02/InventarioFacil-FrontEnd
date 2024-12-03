@@ -7,10 +7,13 @@ import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import { Container, Input, StyleContainerForm } from "./components/containers";
 import { Title, LabelInput, TextInput, ErrorMessageStyled, Image } from "./components/inputComponents";
 import { FormClassName } from "./components/classComponents";
-import { useAuth } from "@/src/components/AuthProvider";
+
+import useLoggingStore from "../zustand/logginState";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const { setIsLoggedIn } = useAuth();
+const navigate = useNavigate()
+  const { setIsLogging } = useLoggingStore();
   return (<Container>
     <Image src={img} />
     <Formik
@@ -20,8 +23,9 @@ function Login() {
         await getCRSFToken()
         await loginFetch(values)
         .then(()=>{
-setIsLoggedIn(true)
+setIsLogging(true)
           alert("login Succesfull")
+          navigate("/dashboard/tables")
         })
         .catch(()=>{
           alert("error login")

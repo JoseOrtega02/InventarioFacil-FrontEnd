@@ -1,11 +1,11 @@
-import { ErrorMessage, Field, Form, Formik } from "formik"
+import {  Field, Form, Formik } from "formik"
 import { getCRSFToken } from "../../../utils/utils";
 import { createTableSchema } from "../yupSchemas/tableSchema";
 import { createTable } from "../utils/tableUtils";
 import { css } from "@/styled-system/css";
 import { styled } from "@/styled-system/jsx";
-import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import { ErrorMessageStyled } from "../../Login/components/inputComponents";
+import CreateIcon from "@/src/components/styledComponents/CreateIcon";
 
 const FormContainer = css`
 display:flex;
@@ -29,6 +29,17 @@ color: token(colors.color2);
 font-family: 'PT Sans Narrow', sans-serif;
 border-radius: 24px;
 `
+const CreateButton = styled.button`
+display:flex;
+align-items:center;
+padding: 14px 35px;
+line-height: 12px;
+height: min-content;
+font-family:'PT Sans Narrow', sans-serif;
+background-color: token(colors.color4) ;
+border-radius:24px;
+color:white;
+&:hover{cursor:pointer;}`
 interface props {
   reload: Function
 }
@@ -50,7 +61,7 @@ function CreateTable({ reload }: props) {
                 <TextInput {...field} type="text" placeholder="Table name" />
               )} />
             </InputContainer>
-            <PrimaryButton type="submit" disabled={isSubmitting}>Create Table</PrimaryButton>
+            <CreateButton type="submit" disabled={isSubmitting}><CreateIcon/>Create Table</CreateButton>
           </div>
           <div>
             {errors.tableName && touched.tableName ? (

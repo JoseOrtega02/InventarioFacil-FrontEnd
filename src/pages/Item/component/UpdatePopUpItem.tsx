@@ -5,6 +5,7 @@ import { LabelInput, TextInput, ErrorMessageStyled } from '../../Login/component
 import { updateItems } from '../utils/itemUtils';
 import { addItemSchema } from '../YupSchemas/ItemYupSchema';
 import { ContainerPopUp, StyleForm } from './AddItem';
+import CrossIcon from '@/src/components/styledComponents/CrossIcon';
 
 export interface Item {
   name: string,
@@ -46,8 +47,8 @@ export function UpdatePopUpItem({ tableId,item,onClose }: props) {
     
 
     <Form className={StyleForm}>
-    <div style={{ textAlign: "end" }}>
-      <PrimaryButton onClick={() => { onClose()}}> <h3>X</h3></PrimaryButton>
+    <div style={{ textAlign: "end",display:"flex",justifyContent:"end",width:"100%" }}>
+      <PrimaryButton onClick={() => { onClose()}}> <CrossIcon/></PrimaryButton>
     </div>
     <Input>
       <LabelInput htmlFor="name">Name:</LabelInput>
