@@ -1,40 +1,72 @@
 import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
-import { Formik, Field } from "formik";
-import { Form } from "react-router-dom";
+import { Formik, Field,Form } from "formik";
 import { ContainerPopUp, StyleForm } from "../../Item/component/AddItem";
 import { Input } from "../../Login/components/containers";
 import { LabelInput, TextInput, ErrorMessageStyled } from "../../Login/components/inputComponents";
 import { props } from "../Table";
 import { updateTable } from "../utils/tableUtils";
-import { updateSchema } from "../yupSchemas/tableSchema";
+import { formSchemaUpdate } from "../yupSchemas/tableSchema";
 import CrossIcon from "@/src/components/styledComponents/CrossIcon";
+import { toast } from "react-toastify";
+import { TableAdapter } from "@/src/utils/Adapters/TableAdapters";
 
 export function EditPopUp({ table, setClose }: props) {
-  return (<Formik
-    initialValues={table}
-    validationSchema={updateSchema}
-    onSubmit={async (values) => {
-      const payload = { tableId: values.tableId, newTable: { tableName: values.tableName, items: values.items } };
-      await updateTable(payload);
-      console.log(values.tableName);
-    }}>{({ values, errors, touched }) => (
-      <ContainerPopUp>
-        <Form className={StyleForm}>
-          <div style={{ textAlign: "end" }}>
-            <PrimaryButton onClick={() => { setClose(false); }}> <CrossIcon/></PrimaryButton>
-          </div>
-          <Input>
-            <LabelInput htmlFor="name">Name:</LabelInput>
-            <Field name="name" render={({ field /* { name, value, onChange, onBlur } */ }: any) => (
-              <TextInput {...field} type="text" placeholder="Item Name" value={values.tableName} />
-            )} id="name" />
-            {errors.tableId && touched.tableId ? (
-              <ErrorMessageStyled>{errors.tableId}</ErrorMessageStyled>
-            ) : (<></>)}
-          </Input>
-          <PrimaryButton type="submit">Update table</PrimaryButton>
-        </Form>
-      </ContainerPopUp>
+  return (
+    <Formik
+      initialValues={TableAdapter(table)}
+      validationSchema={formSchemaUpdate}
+      onSubmit={async (values, { setSubmitting }) => {
+        const payload = {
+          tableId: values.tableId,
+          newTable: {
+            tableName: values.tableName,
+            items: values.items,
+          },
+        };
+        await toast.promise(updateTable(payload), {
+          pending: "Loading...",
+          success: "Table Edited successfully",
+          error: "Error Editing the table",
+        });
+        setSubmitting(false);
+        setClose(false); // Close the popup after submission
+      }}
+    >
+      {({ errors, touched, isSubmitting }) => (
+        <ContainerPopUp>
+          <Form className={StyleForm}>
+            {/* Close Button */}
+            <div style={{ textAlign: "end" }}>
+              <PrimaryButton onClick={() => setClose(false)}>
+                <CrossIcon />
+              </PrimaryButton>
+            </div>
 
-    )}</Formik>);
+            {/* Table Name Input */}
+            <Input>
+              <LabelInput htmlFor="tableName">Name:</LabelInput>
+              <Field name="tableName">
+                {({ field }: any) => (
+                  <TextInput
+                    {...field}
+                    type="text"
+                    placeholder="Table Name"
+                    value={field.value} // Ensure consistent controlled value
+                  />
+                )}
+              </Field>
+              {errors.tableName && touched.tableName && (
+                <ErrorMessageStyled>{errors.tableName}</ErrorMessageStyled>
+              )}
+            </Input>
+
+            {/* Submit Button */}
+            <PrimaryButton type="submit" disabled={isSubmitting}>
+              {!isSubmitting ? "Update Table" : "Loading..."}
+            </PrimaryButton>
+          </Form>
+        </ContainerPopUp>
+      )}
+    </Formik>
+  );
 }

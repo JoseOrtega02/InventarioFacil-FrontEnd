@@ -6,7 +6,8 @@ import { css } from "@/styled-system/css";
 import { styled } from "@/styled-system/jsx";
 import { ErrorMessageStyled } from "../../Login/components/inputComponents";
 import CreateIcon from "@/src/components/styledComponents/CreateIcon";
-
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 const FormContainer = css`
 display:flex;
 flex-direction:column;
@@ -49,9 +50,13 @@ function CreateTable({ reload }: props) {
       validationSchema={createTableSchema}
       onSubmit={async (values, { setSubmitting }) => {
         await getCRSFToken()
-        await createTable(values)
-        reload()
+        await toast.promise(createTable(values), {
+          pending: 'Loading...',
+          success: 'Table created successfully',
+          error: 'Error creating the table'
+        })
         setSubmitting(false);
+        reload()
       }} >{({ isSubmitting, errors, touched }) => (
         <Form className={FormContainer}>
           <div style={{ display: "flex", justifyContent: 'center', alignItems: "end", gap: "12px" }}>
@@ -61,7 +66,7 @@ function CreateTable({ reload }: props) {
                 <TextInput {...field} type="text" placeholder="Table name" />
               )} />
             </InputContainer>
-            <CreateButton type="submit" disabled={isSubmitting}><CreateIcon/>Create Table</CreateButton>
+            <CreateButton type="submit">{!isSubmitting?(<><CreateIcon/>Create Table</>):(<>loading...</>)}</CreateButton>
           </div>
           <div>
             {errors.tableName && touched.tableName ? (

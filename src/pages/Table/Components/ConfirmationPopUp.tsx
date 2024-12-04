@@ -5,6 +5,7 @@ import { ButtonsContainer } from "../StyledComponents/Components";
 import { styled } from "@/styled-system/jsx";
 import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import { deleteTable } from "../utils/tableUtils";
+import { toast } from "react-toastify";
 
 const CancelButton= styled.button`
 padding: 14px 35px;
@@ -30,8 +31,13 @@ function ConfirmationPopUp({idTable,reloadTables,closeFunction}:props) {
 <ButtonsContainer>
     <PrimaryButton onClick={closeFunction}>Cancel</PrimaryButton>
 <CancelButton onClick={async ()=>{
-    await deleteTable({tableId:idTable})
+    await toast.promise(deleteTable({tableId:idTable}), {
+      pending: 'Loading...',
+      success: 'Table Deleted successfully',
+      error: 'Error Deleting the table'
+    })
     reloadTables()
+    closeFunction()
 }
 }>Delete</CancelButton>
 
