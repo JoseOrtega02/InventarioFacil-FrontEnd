@@ -8,6 +8,7 @@ import { ItemInterface } from "@/src/utils/Adapters/Interfaces/ItemInterface";
 import TableComponent from "./Components/TableComponent";
 import { ToastContainer } from "react-toastify";
 import { EditPopUp } from "./Components/EditPopUp";
+import Loader from "@/src/components/styledComponents/Loader";
 export interface props{
   table:ITable
   setClose: Function;

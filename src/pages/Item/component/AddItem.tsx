@@ -10,6 +10,7 @@ import { Input } from '../../Login/components/containers';
 import { ErrorMessageStyled, LabelInput, TextInput } from '../../Login/components/inputComponents';
 import CreateIcon from '@/src/components/styledComponents/CreateIcon';
 import { toast } from 'react-toastify';
+import Loader from '@/src/components/styledComponents/Loader';
 
 interface props {
   setItems: React.Dispatch<React.SetStateAction<AddItemType[]>>;
@@ -101,7 +102,7 @@ await toast.promise(postItems(payload,tableId), {
           {errors.stock && touched.stock ? (
             <ErrorMessageStyled>{errors.stock}</ErrorMessageStyled>
           ) : (<></>)}        </Input>
-        <PrimaryButton type="submit" disabled={isSubmitting}>{isSubmitting?(<>Loading</>):(<>Create Item</>)}</PrimaryButton>
+        <PrimaryButton type="submit" disabled={isSubmitting}>{isSubmitting?(<Loader />):(<>Create Item</>)}</PrimaryButton>
       </Form>
 
     </ContainerPopUp>

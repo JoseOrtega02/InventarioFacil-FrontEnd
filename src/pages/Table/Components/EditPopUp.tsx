@@ -9,6 +9,7 @@ import { formSchemaUpdate } from "../yupSchemas/tableSchema";
 import CrossIcon from "@/src/components/styledComponents/CrossIcon";
 import { toast } from "react-toastify";
 import { TableAdapter } from "@/src/utils/Adapters/TableAdapters";
+import Loader from "@/src/components/styledComponents/Loader";
 
 export function EditPopUp({ table, setClose }: props) {
   return (
@@ -62,7 +63,7 @@ export function EditPopUp({ table, setClose }: props) {
 
             {/* Submit Button */}
             <PrimaryButton type="submit" disabled={isSubmitting}>
-              {!isSubmitting ? "Update Table" : "Loading..."}
+              {!isSubmitting ? "Update Table" : (<Loader />)}
             </PrimaryButton>
           </Form>
         </ContainerPopUp>

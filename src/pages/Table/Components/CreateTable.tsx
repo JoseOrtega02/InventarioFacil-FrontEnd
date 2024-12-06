@@ -8,6 +8,7 @@ import { ErrorMessageStyled } from "../../Login/components/inputComponents";
 import CreateIcon from "@/src/components/styledComponents/CreateIcon";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "@/src/components/styledComponents/Loader";
 const FormContainer = css`
 display:flex;
 flex-direction:column;
@@ -66,7 +67,7 @@ function CreateTable({ reload }: props) {
                 <TextInput {...field} type="text" placeholder="Table name" />
               )} />
             </InputContainer>
-            <CreateButton type="submit">{!isSubmitting?(<><CreateIcon/>Create Table</>):(<>loading...</>)}</CreateButton>
+            <CreateButton type="submit">{!isSubmitting?(<><CreateIcon/>Create Table</>):(<Loader />)}</CreateButton>
           </div>
           <div>
             {errors.tableName && touched.tableName ? (

@@ -11,6 +11,7 @@ import { FormClassName } from "./components/classComponents";
 import useLoggingStore from "../zustand/logginState";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import Loader from "@/src/components/styledComponents/Loader";
 
 function Login() {
 const navigate = useNavigate()
@@ -60,7 +61,7 @@ setIsLogging(true)
             </Input>
 
             <PrimaryButton type="submit" disabled={isSubmitting}>
-              {isSubmitting? (<>Loading...</>): (<>Log In</>)}
+              {isSubmitting? (<Loader />): (<>Log In</>)}
             
             </PrimaryButton>
           </Form>

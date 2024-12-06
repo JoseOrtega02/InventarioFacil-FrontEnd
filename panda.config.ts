@@ -23,6 +23,12 @@ export default defineConfig({
           title: { value: ['Krona One', "sans-serif"] },
         }
       },
+      keyframes:{
+        rotation:{
+          "0%":{transform: "rotate(0deg)"},
+          "100%":{transform: "rotate(360deg)"}
+        }
+      }
     }
   },
 

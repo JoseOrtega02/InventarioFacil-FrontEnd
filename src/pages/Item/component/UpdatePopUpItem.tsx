@@ -7,6 +7,7 @@ import { addItemSchema } from '../YupSchemas/ItemYupSchema';
 import { ContainerPopUp, StyleForm } from './AddItem';
 import CrossIcon from '@/src/components/styledComponents/CrossIcon';
 import { toast } from 'react-toastify';
+import Loader from '@/src/components/styledComponents/Loader';
 
 export interface Item {
   name: string,
@@ -94,7 +95,7 @@ export function UpdatePopUpItem({ tableId,item,onClose }: props) {
       {errors.stock && touched.stock ? (
         <ErrorMessageStyled>{errors.stock}</ErrorMessageStyled>
       ) : (<></>)}        </Input>
-    <PrimaryButton type="submit" disabled={isSubmitting}>Done</PrimaryButton>
+    <PrimaryButton type="submit" disabled={isSubmitting}>{isSubmitting?(<Loader />):"Update Item"}</PrimaryButton>
   </Form>
 
     
