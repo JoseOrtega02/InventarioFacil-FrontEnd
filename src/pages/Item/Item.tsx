@@ -7,6 +7,7 @@ import { Table } from "./Interfaces/Table"
 import { TitleBlack } from "@/src/components/styledComponents/Texts"
 import TableComponent from "./component/TableComponent"
 import { Item as ItemInterface, UpdatePopUpItem } from "./component/UpdatePopUpItem"
+import { ToastContainer } from "react-toastify"
 
 
 
@@ -32,6 +33,8 @@ function Item() {
   return (
     <>
       <TitleBlack>Table: {table?.tableName}</TitleBlack>
+      
+      <ToastContainer/>
 
       <TableComponent tableId={table.tableId} items={table.items} setSelectedItem={setSelectedItem} setOpen={()=>setIsPopUpOpen(!isPopUpOpen)} />
 

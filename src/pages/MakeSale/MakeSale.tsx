@@ -6,6 +6,7 @@ import {  TitleBlack } from '@/src/components/styledComponents/Texts'
 
 import { useEffect, useState } from 'react'
 import TicketIcon from '@/src/components/styledComponents/TicketIcon'
+import { toast, ToastContainer } from 'react-toastify'
 const ContainerKart = styled.div`
 display:flex;
 flex-direction:column;
@@ -69,6 +70,7 @@ function MakeSale() {
 
   return (
    <ContainerKart>
+    <ToastContainer/>
        <TitleBlack>Your kart</TitleBlack>
       <div style={{display:"flex",justifyContent:"center",flexDirection:"column",alignItems:"center",gap:"12px"}}>
         <div style={{display:"flex",justifyContent:"center",flexDirection:"column",width:"100%",alignItems:"center",gap:"12px",overflowY:"scroll",maxHeight:"300px",paddingTop:"24px"}}>
@@ -81,9 +83,12 @@ function MakeSale() {
       </TotalContainer>
       <MakeSaleButton  onClick={async () => {
         const payload = returnPayloadSale(items)
-       await postSale(payload)
-        console.log(items)
-        alert("sale successful")
+
+       await toast.promise(postSale(payload), {
+        pending: 'Loading...',
+        success: 'Sale done successfully',
+        error: 'Error making the Sale'
+      })
       }}><TicketIcon/>Make the sale</MakeSaleButton>
       </div>
       

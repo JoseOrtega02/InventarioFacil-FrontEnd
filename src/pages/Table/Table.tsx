@@ -6,7 +6,7 @@ import { TitleBlack } from "@/src/components/styledComponents/Texts";
 import { Container, } from "./StyledComponents/Components";
 import { ItemInterface } from "@/src/utils/Adapters/Interfaces/ItemInterface";
 import TableComponent from "./Components/TableComponent";
-import { ToastContainer,toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { EditPopUp } from "./Components/EditPopUp";
 export interface props{
   table:ITable

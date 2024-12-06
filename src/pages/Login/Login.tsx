@@ -10,11 +10,13 @@ import { FormClassName } from "./components/classComponents";
 
 import useLoggingStore from "../zustand/logginState";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 function Login() {
 const navigate = useNavigate()
   const { setIsLogging } = useLoggingStore();
   return (<Container>
+    <ToastContainer/>
     <Image src={img} />
     <Formik
       initialValues={{ userName: '', password: '' }}
@@ -24,11 +26,11 @@ const navigate = useNavigate()
         await loginFetch(values)
         .then(()=>{
 setIsLogging(true)
-          alert("login Succesfull")
+          toast("Log in Succesfull")
           navigate("/dashboard/tables")
         })
         .catch(()=>{
-          alert("error login")
+          toast.error("Error in log in")
         })
         setSubmitting(false);
       }}
@@ -58,7 +60,8 @@ setIsLogging(true)
             </Input>
 
             <PrimaryButton type="submit" disabled={isSubmitting}>
-              Log In
+              {isSubmitting? (<>Loading...</>): (<>Log In</>)}
+            
             </PrimaryButton>
           </Form>
           <h4 style={{ color: "white" }}>Dont have an account? <a href="/register" style={{ color: "#ED7D31" }}>Register</a></h4>

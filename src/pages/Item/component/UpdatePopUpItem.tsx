@@ -6,6 +6,7 @@ import { updateItems } from '../utils/itemUtils';
 import { addItemSchema } from '../YupSchemas/ItemYupSchema';
 import { ContainerPopUp, StyleForm } from './AddItem';
 import CrossIcon from '@/src/components/styledComponents/CrossIcon';
+import { toast } from 'react-toastify';
 
 export interface Item {
   name: string,
@@ -28,8 +29,11 @@ export function UpdatePopUpItem({ tableId,item,onClose }: props) {
     { setSubmitting }: FormikHelpers<Values>) => {
     console.log("submitting")
     const payload = { itemId: item.id, tableId:tableId , newItem: { name: values.name, price: values.price, stock: values.stock } };
-    await updateItems(payload)
-    .then((data)=>{console.log(data)})
+    await toast.promise(updateItems(payload), {
+      pending: 'Loading...',
+      success: 'Item Edited successfully',
+      error: 'Error Editing the Item'
+    })
      setSubmitting(false)
      onClose()
   }

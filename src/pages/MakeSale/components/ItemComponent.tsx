@@ -2,6 +2,7 @@ import { styled } from '@/styled-system/jsx'
 import { DeleteButton } from '../../Table/StyledComponents/Components'
 import { useSaleStore } from '../../zustand/itemsSalesState'
 import DeleteIcon from '@/src/components/styledComponents/DeleteIcon'
+import { toast } from 'react-toastify'
 interface props {
   item: {
     name: string,
@@ -34,7 +35,10 @@ const deleteItem= useSaleStore(state => state.deleteItem)
       <h4>{item.name}</h4>
       <h4>Units: {item.quantity}</h4>
       <h4>$ {item.price * item.quantity}</h4>
-      <DeleteButton onClick={()=>deleteItem(item.itemId)} ><DeleteIcon/></DeleteButton>
+      <DeleteButton onClick={()=>{
+        deleteItem(item.itemId)
+        toast.success("Item removed successfully")
+      }} ><DeleteIcon/></DeleteButton>
     </ItemContainer>
   )
 }

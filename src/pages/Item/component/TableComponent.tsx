@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 import { DeleteButton, EditButton } from '../../Table/StyledComponents/Components';
 import EditIcon from '@/src/components/styledComponents/EditIcon';
 import DeleteIcon from '@/src/components/styledComponents/DeleteIcon';
+import { toast } from 'react-toastify';
 
 
 interface Props {
@@ -80,6 +81,7 @@ const tableId = id || ""
               price: itemData.price,
             };
             addItem(saleBody);
+            toast.success("Added Succesfully")
           }}
         >
           Add to sale
@@ -90,7 +92,11 @@ const tableId = id || ""
 
         <DeleteButton
           onClick={async () => {
-            await deleteItems({ tableId, itemId: itemData.id });
+            await toast.promise(deleteItems({ tableId, itemId: itemData.id }), {
+              pending: 'Loading...',
+              success: 'Table created successfully',
+              error: 'Error creating the table'
+            })
           }}
         >
           <DeleteIcon/>

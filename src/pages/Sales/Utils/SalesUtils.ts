@@ -42,13 +42,15 @@ export const postSale = async (data: postInterface) => {
   })
     .then(handleFetchErrors)
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data =>  data)
     .catch(err => {
       if (err instanceof TypeError) {
         console.log("Network error: " + err)
+        throw err
       }
       else {
         console.error(err)
+        throw err
       }
     })
 }
