@@ -8,6 +8,8 @@ import useLoggingStore from "@/src/pages/zustand/logginState";
 import { ButtonsContainer } from "@/src/pages/Table/StyledComponents/Components";
 import LogOutIcon from "../styledComponents/LogOutIcon";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getUser } from "@/src/utils/utils";
 
 function LogOut(){
   const { setIsLogging } = useLoggingStore();
@@ -22,7 +24,19 @@ navigate("/")
 
 export default function Navbar() {
   const { isLogging } = useLoggingStore();
-console.log(isLogging)
+  const {setIsLogging} = useLoggingStore()
+  const fetchUser = async()=>{
+    await getUser()
+    .then((data)=>{
+      if(data){
+        setIsLogging(true)
+      }
+    })
+    .catch(()=>setIsLogging(false))
+  }
+useEffect(()=>{
+  fetchUser()
+},[])
 
   return (<NavbarContainer>
     <Navlinks />

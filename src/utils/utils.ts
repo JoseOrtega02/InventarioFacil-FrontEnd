@@ -30,10 +30,12 @@ export const handleFetchErrors = async (response: Response) => {
       return user;
     } catch (error) {
       if (error instanceof TypeError) {
+
         console.error('Network error or request was aborted:', error);
+        
       } else {
         console.error('Fetch error:', error);
       }
-      return null; // or handle the error according to your needs
+      throw error
     }
   };
