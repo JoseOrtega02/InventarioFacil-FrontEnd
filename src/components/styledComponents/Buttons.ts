@@ -39,8 +39,8 @@ export const PrimaryButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 14px 20px;
+    font-size: 18px;
   }
 `;
 export const Icon = styled.img`

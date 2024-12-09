@@ -2,6 +2,10 @@ import { styled } from "@/styled-system/jsx"
 
 export const Image = styled.img`
 border-radius: 24px;
+
+@media (max-width:768px){
+display:none;
+}
 `
 export const Title = styled.div`
 font-family: 'Krona One', sans-serif;
