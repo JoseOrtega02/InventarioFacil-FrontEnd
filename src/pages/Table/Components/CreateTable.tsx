@@ -17,12 +17,12 @@ align-items:center;
 height: 100px;
 gap:12px;
 `
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
 display:flex;
 flex-direction:column;
 width: 300px;
 `
-const TextInput = styled.input`
+export const TextInput = styled.input`
 background-color: token(colors.color1);
 border: 3px solid token(colors.color2);
 padding: 8px 6px;

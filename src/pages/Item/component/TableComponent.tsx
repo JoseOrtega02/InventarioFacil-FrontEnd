@@ -15,6 +15,7 @@ import { DeleteButton, EditButton } from '../../Table/StyledComponents/Component
 import EditIcon from '@/src/components/styledComponents/EditIcon';
 import DeleteIcon from '@/src/components/styledComponents/DeleteIcon';
 import { toast } from 'react-toastify';
+import { InputContainer, TextInput } from '../../Table/Components/CreateTable';
 
 
 interface Props {
@@ -125,8 +126,10 @@ const tableId = id || ""
 
   return (
     <div  style={{ height: 350, padding: "0px 12px" }}>
-      <input type='text' placeholder="Search product..."
-              onInput={onFilterTextBoxChanged} />
+      <InputContainer>
+      <TextInput type='text' placeholder="Search product..."
+              onInput={onFilterTextBoxChanged}/>
+      </InputContainer>
       <AgGridReact
         rowData={rowData}
         columnDefs={colDefs}
