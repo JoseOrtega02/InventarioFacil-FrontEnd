@@ -7,7 +7,7 @@ import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import { deleteTable } from "../utils/tableUtils";
 import { toast } from "react-toastify";
 
-const CancelButton= styled.button`
+export const CancelButton= styled.button`
 padding: 14px 35px;
 line-height: 12px;
 height: min-content;

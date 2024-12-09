@@ -28,9 +28,10 @@ interface Props {
   tableId: string;
   setSelectedItem: Function;
  setOpen:Function;
+ setDeletePopUp: Function
 }
 
-function TableComponent({  items,setSelectedItem,setOpen }: Props) {
+function TableComponent({  items,setSelectedItem,setOpen,setDeletePopUp }: Props) {
   const [rowData, setRowData] = useState<Item[] | undefined>();
   const [quickFilterText, setQuickFilterText] = useState<string>();
   const onFilterTextBoxChanged = useCallback(
@@ -92,11 +93,8 @@ const tableId = id || ""
 
         <DeleteButton
           onClick={async () => {
-            await toast.promise(deleteItems({ tableId, itemId: itemData.id }), {
-              pending: 'Loading...',
-              success: 'Table created successfully',
-              error: 'Error creating the table'
-            })
+            setSelectedItem(itemData)
+            setDeletePopUp(true)
           }}
         >
           <DeleteIcon/>

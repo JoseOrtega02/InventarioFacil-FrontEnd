@@ -8,6 +8,7 @@ import { TitleBlack } from "@/src/components/styledComponents/Texts"
 import TableComponent from "./component/TableComponent"
 import { Item as ItemInterface, UpdatePopUpItem } from "./component/UpdatePopUpItem"
 import { ToastContainer } from "react-toastify"
+import DeletePopUp from "./component/DeletePopUp"
 
 
 
@@ -15,7 +16,7 @@ function Item() {
   const { id } = useParams()
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemInterface | null>(null);
-  
+  const [deletePopUp,setDeletePopUp] = useState(false)
   const [table, setTable] = useState<Table>({
     tableId: "",
     tableName: "",
@@ -36,7 +37,7 @@ function Item() {
       
       <ToastContainer/>
 
-      <TableComponent tableId={table.tableId} items={table.items} setSelectedItem={setSelectedItem} setOpen={()=>setIsPopUpOpen(!isPopUpOpen)} />
+      <TableComponent tableId={table.tableId} setDeletePopUp={setDeletePopUp} items={table.items} setSelectedItem={setSelectedItem} setOpen={()=>setIsPopUpOpen(!isPopUpOpen)} />
 
       {isPopUpOpen && selectedItem && id ? (
   <UpdatePopUpItem
@@ -45,6 +46,8 @@ function Item() {
     onClose={() => setIsPopUpOpen(!isPopUpOpen)}
   />
 ) : null}
+
+{deletePopUp && selectedItem &&id ? ( <DeletePopUp tableId={id} idItem={selectedItem.id} closeFunction={()=> setDeletePopUp(!deletePopUp)}/>): null }
 
       <div style={{width:"100%",display:"flex",justifyContent:"center",marginTop:"36px",marginBottom:"24px"}}>
         <AddItem />

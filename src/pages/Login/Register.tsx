@@ -8,7 +8,13 @@ import image from "@/public/register-image.jpg"
 import { FormClassName } from "./components/classComponents";
 import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import Loader from "@/src/components/styledComponents/Loader";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import useLoggingStore from "../zustand/logginState";
 function Register() {
+  const navigate = useNavigate()
+ const {setIsLogging} = useLoggingStore()
+
   return (
     <Container>
       <Formik
@@ -17,11 +23,19 @@ function Register() {
         onSubmit={async (values, { setSubmitting }) => {
           await getCRSFToken()
           await registerFetch(values)
+          .then(()=>{
+            setIsLogging(true)
+                      toast("Register Successful")
+                      navigate("/dashboard/tables")
+                    })
+            .catch(()=>{
+                      toast.error("Error in log in")
+                    })
           setSubmitting(false)
         }}
       >{({ isSubmitting, errors, touched }) => (
         <StyleContainerForm>
-
+<ToastContainer/>
           <Title>Register</Title>
           <Form className={FormClassName}>
             <Input>
