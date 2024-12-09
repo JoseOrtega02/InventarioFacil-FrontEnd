@@ -13,3 +13,8 @@ justify-content: center;
 text-align:center;
 margin:12px 0px;
 `
+export const ResponsiveText = styled.span`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;

@@ -7,6 +7,10 @@ justify-content:space-between;
 background-color: token(colors.color2); 
 padding:8px 55px;
 color:white;
+
+@media (max-width:768px){
+padding: 8px 26px;
+}
 `
 export const LinksContainer = styled.div`
 display: flex;

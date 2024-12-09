@@ -9,6 +9,9 @@ padding-top:32px;
 padding-bottom:32px;
 gap: 100px;
 color:black;
+@media (max-width:768px){
+gap 20px;
+}
 `
 const Button = styled.button`
 font-family: 'PT Sans Narrow', sans-serif;
@@ -25,6 +28,10 @@ export const TitleBlack = styled.div`
 font-family: 'Krona One', sans-serif;
 font-size: 36px;
 color:black;
+
+@media (max-width:768px){
+font-size:28px;
+}
 `
 function TextContainer() {
   const navigate = useNavigate()
