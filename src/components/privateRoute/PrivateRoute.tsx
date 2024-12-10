@@ -11,8 +11,9 @@ export const PrivateRoute: React.FC<Props> = ({ component: RouteComponent }) => 
 
   useEffect(() => {
     const fetchUser = async () => {
-      const fetchedUser = await getUser();
-      setUser(fetchedUser);
+      await getUser()
+      .then((data)=>setUser(data))
+      .catch(()=>setUser(null))
       setLoading(false);
     };
 

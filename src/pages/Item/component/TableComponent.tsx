@@ -108,36 +108,40 @@ const tableId = id || ""
   };
 
   const [colDefs, setColDefs] = useState<ColDef<Item>[]>([
-    { field: "name" },
-    { field: "price" },
-    { field: "stock" },
+    { field: "name",width:120,pinned:"left" },
+    { field: "price",width:80 },
+    { field: "stock",width: 80 },
     {
       field: "id",
       headerName: "options",
       cellRenderer: CustomButton,
       pinned: "right",
-      width: 540
+      width: 300
     },
   ]);
 
-  const defaultColDef: ColDef = {
-    flex: 1,
-  };
+  
 
   return (
-    <div  style={{ height: 350, padding: "0px 12px" }}>
+    <div  style={{ height: 350,width:"100%", padding: "0px 12px" }}>
       <InputContainer>
       <TextInput type='text' placeholder="Search product..."
               onInput={onFilterTextBoxChanged}/>
       </InputContainer>
-      <AgGridReact
+      <div style={{width:"100%",height:"100%"}}>
+        <AgGridReact
         rowData={rowData}
         columnDefs={colDefs}
-        defaultColDef={defaultColDef}
+        
         theme={myTheme}
         context={{ tableId }}
         quickFilterText={quickFilterText}
+        gridOptions={{
+          alwaysShowHorizontalScroll:true
+        }}
       />
+      </div>
+      
     </div>
   );
 }

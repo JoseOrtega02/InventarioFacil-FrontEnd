@@ -40,6 +40,10 @@ background-color: token(colors.color3);
 color:white;
 padding:20px;
 border-radius: 24px;
+
+@media (max-width:768px){
+width:80%;
+}
 `
 function AddItemForm({ setItems, close,tableId }: props) {
   return (<Formik

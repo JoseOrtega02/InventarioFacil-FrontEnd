@@ -9,8 +9,13 @@ import TableComponent from "./component/TableComponent"
 import { Item as ItemInterface, UpdatePopUpItem } from "./component/UpdatePopUpItem"
 import { ToastContainer } from "react-toastify"
 import DeletePopUp from "./component/DeletePopUp"
+import { styled } from "@/styled-system/jsx"
 
-
+const Container = styled.div`
+display:flex;
+flex-direction:column;
+gap:12px;
+`
 
 function Item() {
   const { id } = useParams()
@@ -32,7 +37,7 @@ function Item() {
   
 
   return (
-    <>
+    <Container>
       <TitleBlack>Table: {table?.tableName}</TitleBlack>
       
       <ToastContainer/>
@@ -54,7 +59,7 @@ function Item() {
       </div>
       
 
-    </>
+    </Container>
   )
 }
 

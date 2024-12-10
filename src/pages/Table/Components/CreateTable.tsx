@@ -16,6 +16,7 @@ justify-content:center;
 align-items:center;
 height: 100px;
 gap:12px;
+
 `
 export const InputContainer = styled.div`
 display:flex;
@@ -41,7 +42,24 @@ font-family:'PT Sans Narrow', sans-serif;
 background-color: token(colors.color4) ;
 border-radius:24px;
 color:white;
-&:hover{cursor:pointer;}`
+&:hover{cursor:pointer;}
+@media (max-width:768px){
+width:100%;
+justify-content:center;
+padding: 10px 26px;
+}
+`
+
+const divStyles = css`
+
+display:flex;
+justify-content:center;
+align-items:end;
+gap:12px;
+@media(max-width:768px){
+flex-direction:column;
+}
+`
 interface props {
   reload: Function
 }
@@ -60,7 +78,7 @@ function CreateTable({ reload }: props) {
         reload()
       }} >{({ isSubmitting, errors, touched }) => (
         <Form className={FormContainer}>
-          <div style={{ display: "flex", justifyContent: 'center', alignItems: "end", gap: "12px" }}>
+          <div className={divStyles}>
             <InputContainer>
               <label htmlFor="tableName">Name:</label>
               <Field type="text" name="tableName" id="tableName" render={({ field /* { name, value, onChange, onBlur } */ }: any) => (

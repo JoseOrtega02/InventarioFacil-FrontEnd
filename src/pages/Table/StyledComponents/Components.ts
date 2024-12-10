@@ -7,6 +7,9 @@ justify-content:space-around;
 align-items: center;
 padding: 24px 20%;
 height:80vh;
+@media(max-width:768px){
+padding:24px 12px;
+}
 `
 export const TableButton = styled.button`
 padding: 18px 48px;
@@ -29,6 +32,9 @@ cursor:pointer;
 background-opacity:20%;
 color:white;
 }
+@media (max-width:768px){
+padding: 14px 18px;
+}
 `
 export const EditButton = styled.button`
 background-color: token(colors.color2);
@@ -40,6 +46,11 @@ cursor:pointer;
 background-opacity:20%;
 color:white;
 }
+@media (max-width:768px){
+padding: 14px 18px;
+
+}
+
 
 `
 export const TableItemContainer = styled.div`
@@ -56,5 +67,4 @@ justify-content:center;
 align-items:center;
 flex-direction:row;
 gap: 10px;
-
 `

@@ -24,6 +24,9 @@ border-radius: 24px;
 width:100%;
 padding: 8px 24px;
 font-size:24px;
+@media(max-width:768px){
+font-size:16px;
+}
 `
 
 
