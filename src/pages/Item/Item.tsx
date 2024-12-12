@@ -27,10 +27,11 @@ function Item() {
     tableName: "",
     items: []
   })
-  useEffect(() => {
-    const fetchItems= async ()=>{
+  const fetchItems= async ()=>{
        await getItems(id, setTable)
     }
+  useEffect(() => {
+    
    fetchItems()
   }, [])
   
@@ -47,15 +48,16 @@ function Item() {
       {isPopUpOpen && selectedItem && id ? (
   <UpdatePopUpItem
     item={selectedItem}
+    reloadTable={fetchItems}
     tableId={id}
     onClose={() => setIsPopUpOpen(!isPopUpOpen)}
   />
 ) : null}
 
-{deletePopUp && selectedItem &&id ? ( <DeletePopUp tableId={id} idItem={selectedItem.id} closeFunction={()=> setDeletePopUp(!deletePopUp)}/>): null }
+{deletePopUp && selectedItem &&id ? ( <DeletePopUp tableId={id} reloadTable={fetchItems} idItem={selectedItem.id} closeFunction={()=> setDeletePopUp(!deletePopUp)}/>): null }
 
       <div style={{width:"100%",display:"flex",justifyContent:"center",marginTop:"36px",marginBottom:"24px"}}>
-        <AddItem />
+        <AddItem reloadTable={fetchItems}/>
       </div>
       
 

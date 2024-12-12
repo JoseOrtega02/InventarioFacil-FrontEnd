@@ -19,13 +19,14 @@ interface props {
   item: Item 
   tableId: string
   onClose: Function
+  reloadTable: Function
 }
 interface Values{
   name: string,
   price: number,
   stock: number,
 }
-export function UpdatePopUpItem({ tableId,item,onClose }: props) {
+export function UpdatePopUpItem({ reloadTable,tableId,item,onClose }: props) {
   const handleSubmit = async (values: Values,
     { setSubmitting }: FormikHelpers<Values>) => {
     console.log("submitting")
@@ -35,6 +36,7 @@ export function UpdatePopUpItem({ tableId,item,onClose }: props) {
       success: 'Item Edited successfully',
       error: 'Error Editing the Item'
     })
+    reloadTable()
      setSubmitting(false)
      onClose()
   }

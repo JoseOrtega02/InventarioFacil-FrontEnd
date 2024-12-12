@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import Loader from '@/src/components/styledComponents/Loader';
 
 interface props {
-  setItems: React.Dispatch<React.SetStateAction<AddItemType[]>>;
+  setItems: Function;
   close: React.Dispatch<React.SetStateAction<boolean>>;
   tableId:string;
 }
@@ -61,10 +61,7 @@ await toast.promise(postItems(payload,tableId), {
   success: 'Item created successfully',
   error: 'Error creating the item'
 })
-      setItems((prevItems) => [
-        ...prevItems,
-        values
-      ]);
+      setItems()
       setSubmitting(false)
       close(false)
     }}
@@ -116,12 +113,11 @@ await toast.promise(postItems(payload,tableId), {
 }
 
 
-function AddItem() {
+function AddItem({reloadTable}:{reloadTable:Function}) {
   const [popState, setPop] = useState<boolean>(false)
-  const [items, setItems] = useState<AddItemType[]>([])
   const { id } = useParams()
   return (<>
-    {popState ? <AddItemForm setItems={setItems} close={setPop} tableId={id || ""} /> : <></>}
+    {popState ? <AddItemForm setItems={reloadTable} close={setPop} tableId={id || ""} /> : <></>}
     <PrimaryButton onClick={async () => {
       if (!popState) {
         setPop(true)
