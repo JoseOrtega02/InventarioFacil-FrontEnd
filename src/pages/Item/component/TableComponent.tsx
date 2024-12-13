@@ -6,7 +6,6 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { ColDef } from "ag-grid-community";
 import { myTheme } from './TableTheme';
 import { PrimaryButton } from '@/src/components/styledComponents/Buttons';
-import { deleteItems } from '../utils/itemUtils';
 import { Item } from './UpdatePopUpItem';
 import { itemAdapter } from '@/src/utils/Adapters/ItemAdapters';
 import { useSaleStore } from '../../zustand/itemsSalesState';
@@ -83,7 +82,7 @@ const tableId = id || ""
               price: itemData.price,
             };
             addItem(saleBody);
-            toast.success("Added Succesfully")
+            toast.success("Added Successfully")
           }}
         >
           Add to sale
@@ -107,7 +106,7 @@ const tableId = id || ""
     );
   };
 
-  const [colDefs, setColDefs] = useState<ColDef<Item>[]>([
+  const [colDefs] = useState<ColDef<Item>[]>([
     { field: "name",width:120,pinned:"left" },
     { field: "price",width:80 },
     { field: "stock",width: 80 },

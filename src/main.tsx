@@ -1,21 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import App from './App'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Login from './pages/Login/Login.tsx';
-import Register from './pages/Login/Register.tsx';
-import { PrivateRoute } from './components/privateRoute/PrivateRoute.tsx';
-import Dashboard from './pages/Dashboard/Dashboard.tsx';
-import Table from './pages/Table/Table.tsx';
-import Item from './pages/Item/Item.tsx';
-import Sales from './pages/Sales/Sales.tsx';
-import MakeSale from './pages/MakeSale/MakeSale.tsx';
+import Login from './pages/Login/Login';
+import Register from './pages/Login/Register';
+import { PrivateRoute } from './components/privateRoute/PrivateRoute';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Table from './pages/Table/Table';
+import Item from './pages/Item/Item';
+import Sales from './pages/Sales/Sales';
+import MakeSale from './pages/MakeSale/MakeSale';
 import "./index.css"
 import '../styled-system/styles.css'
-import Home from './pages/Home/Home.tsx';
+import Home from './pages/Home/Home';
 import '@fontsource/krona-one';
 import '@fontsource/pt-sans-narrow';
 import '@fontsource/sarala';

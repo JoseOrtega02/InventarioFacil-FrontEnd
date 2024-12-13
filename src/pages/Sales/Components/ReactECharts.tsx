@@ -1,6 +1,6 @@
 // React-ECharts.tsx
 
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { init, getInstanceByDom } from "echarts";
 import type { CSSProperties } from "react";
 import type { EChartsOption, ECharts, SetOptionOpts } from "echarts";

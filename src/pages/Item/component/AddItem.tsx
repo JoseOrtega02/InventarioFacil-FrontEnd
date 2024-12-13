@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import React, { useState } from 'react'
-import { AddItemType, addItemSchema } from '../YupSchemas/ItemYupSchema';
+import { addItemSchema } from '../YupSchemas/ItemYupSchema';
 import { postItems } from '../utils/itemUtils';
 import { useParams } from 'react-router-dom';
 import { PrimaryButton } from '@/src/components/styledComponents/Buttons';
