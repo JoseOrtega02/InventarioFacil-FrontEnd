@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+  "dev": "vite",
+  "build": "pnpm run build:css && vite build", 
+  "build:css": "panda codegen",  
   "type-check": "tsc --noEmit",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "prepare": "panda codegen"
-  },
+  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+  "preview": "vite preview",
+  "prepare": "panda codegen"  
+},
   "dependencies": {
     "@ag-grid-community/core": "^32.3.2",
     "@ag-grid-community/styles": "^32.3.2",
