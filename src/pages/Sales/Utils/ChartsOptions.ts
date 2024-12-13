@@ -54,7 +54,7 @@ export const generateChartOptions = (barsData: Array<{ month: string; quantity: 
     };
   };
 
-  export const generatePieChartOptions = (pieData: Array<{ itemId: string; quantity: number }> | undefined): ReactEChartsProps["option"] => {
+  export const generatePieChartOptions = (pieData: Array<{ itemId: string;name:string; quantity: number }> | undefined): ReactEChartsProps["option"] => {
     return {
       tooltip: {
         trigger: "item",
@@ -70,7 +70,7 @@ export const generateChartOptions = (barsData: Array<{ month: string; quantity: 
           radius: "50%",
           data: pieData?.map((item) => ({
             value: item.quantity, // Use quantity as the value
-            name: item.itemId,       // Use id as the name
+            name: item.name,       // Use id as the name
           })), // Map pieData to match the expected format
           emphasis: {
             itemStyle: {

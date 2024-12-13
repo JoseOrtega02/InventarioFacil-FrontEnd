@@ -83,7 +83,7 @@ function MakeSale() {
       </TotalContainer>
       <MakeSaleButton  onClick={async () => {
         const payload = returnPayloadSale(items)
-
+console.log(payload)
        await toast.promise(postSale(payload), {
         pending: 'Loading...',
         success: 'Sale done successfully',

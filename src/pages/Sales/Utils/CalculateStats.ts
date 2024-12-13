@@ -2,6 +2,7 @@ interface Item {
     tableId: string;
     itemId: string;
     quantity: number;
+    name:string;
     price: number;
     _id: string;
   }
@@ -54,13 +55,14 @@ interface Item {
           existingItem.quantity += item.quantity;
         } else {
           acc.push({
-            itemId: item.itemId,
+            name: item.name,
+            itemId:item.itemId,
             quantity: item.quantity,
           });
         }
       });
       return acc;
-    }, [] as Array<{ itemId: string; quantity: number }>);
+    }, [] as Array<{ name: string;itemId:string; quantity: number }>);
   
     return itemSales;
   };

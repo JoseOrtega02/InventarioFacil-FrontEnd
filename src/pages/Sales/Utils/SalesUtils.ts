@@ -27,6 +27,7 @@ interface postInterface {
   saleItems: {
     tableId: string,
     itemId: string,
+    name:string,
     quantity: number
   }[]
 }
