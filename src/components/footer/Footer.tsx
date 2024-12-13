@@ -1,14 +1,18 @@
-
+import { styled } from "@/styled-system/jsx"
+const FooterContainer = styled.footer`
+display:flex;
+justify-content: start;
+padding:55px;
+height: 90px;
+background-color: token(colors.color2);
+align-items:center;
+color: token(colors.color1);
+`
 function Footer() {
   return (
-    <footer>
-        <h4>created by: José Ortega</h4>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Tables</a>
-            <a href="#">Sales</a>
-        </nav>
-    </footer>
+    <FooterContainer>
+      <h4>Created by: <a href="https://www.linkedin.com/in/jose-manuel-ortega-gordillo" rel='noopener noreferrer' target="_blank" style={{ textDecoration: "underline" }}>Jose Ortega</a></h4>
+    </FooterContainer>
   )
 }
 

@@ -18,4 +18,7 @@ export const updateSchema = object({
         items: array()
     })
 })
+export const formSchemaUpdate= object({
+    tableName: string().min(1, "Must not be empty" ).max(15, "must be less than 15 characters").required(),
+})
 export type UpdateTable = InferType<typeof updateSchema>

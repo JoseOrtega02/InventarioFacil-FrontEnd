@@ -1,33 +1,58 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import CreateTable from "./Components/CreateTable"
-import { fetchTables } from "./utils/tableUtils";
-import DeleteTable from "./Components/DeleteTable";
-import { Link } from "react-router-dom";
-
-interface TableData {
-    _id: string;
-    owner: string;
-    tableName: string;
-    items: string[];
-  }
+import {  fetchTables } from "./utils/tableUtils";
+import { TableData } from "./Interfaces/TableData";
+import { TitleBlack } from "@/src/components/styledComponents/Texts";
+import { Container, } from "./StyledComponents/Components";
+import { ItemInterface } from "@/src/utils/Adapters/Interfaces/ItemInterface";
+import TableComponent from "./Components/TableComponent";
+import { ToastContainer } from "react-toastify";
+import { EditPopUp } from "./Components/EditPopUp";
+import Loader from "@/src/components/styledComponents/Loader";
+export interface props{
+  table:ITable
+  setClose: Function;
+}
+export interface ITable{
+  _id:string,
+    tableName:string,
+    items:ItemInterface[] 
+    __v: number;
+    owner:string
+}
 function Table() {
-    const [tables,setTables] =useState<Array<TableData>>([])
-    useEffect(()=>{
-         fetchTables(setTables)
-    },[])
-    console.log(tables[0])
+  const [tables, setTables] = useState<Array<TableData>>([])
+  const [tableUpdate,setTableUpdate] = useState<boolean>(false)
+  const togglePopover = (setState:React.Dispatch<React.SetStateAction<boolean>>)=>{
+    setState((prev)=> !prev)
+  }
+  const [selectedTable,setSelectedTable] = useState<ITable>()
+  useEffect(() => {
+    fetchTables(setTables)
+  }, [])
+  const reloadTables = () => {
+    fetchTables(setTables)
+  }
+
   return (
-    <div>
-        <CreateTable/>
-        {tables && tables.length !== 0 ?(
-        tables.map((table) => (
-          <Link to={`${table._id}`} key={table._id}>{table.tableName}</Link>
-        ))
-      ) : (
-        "No tables"
-      )}
-      <DeleteTable/>
-    </div>
+    
+    <Container>
+     
+      <CreateTable reload={reloadTables} />
+      <ToastContainer/>
+      <div style={{ width: "100%" }}>
+
+        <TitleBlack>Tables</TitleBlack>
+        {tables && tables.length !== 0 ? (
+          tables.map((table) => 
+            <TableComponent table={table} reloadTables={reloadTables} togglePopover={togglePopover} setTableUpdate={setTableUpdate} setSelected={setSelectedTable}/>
+          )
+        ) : (
+          "No tables"
+        )}
+         {tableUpdate && selectedTable  && <EditPopUp table={selectedTable} setClose={()=>togglePopover(setTableUpdate)} /> }
+      </div>
+    </Container>
   )
 }
 

@@ -1,4 +1,12 @@
 {
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    }
+  },
   "files": [],
   "references": [
     {
@@ -7,5 +15,9 @@
     {
       "path": "./tsconfig.node.json"
     }
+  ],
+  "include": [
+    "src",
+    "styled-system"
   ]
 }

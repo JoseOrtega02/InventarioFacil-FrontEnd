@@ -1,9 +1,17 @@
+import { TableAdapter } from "../../../utils/Adapters/TableAdapters";
 import { handleFetchErrors } from "../../../utils/utils";
-import { Table } from "../Item";
+import { Table } from "../Interfaces/Table";
 import { AddItemType } from "../YupSchemas/ItemYupSchema";
 import Cookies from "js-cookie";
 const backendURL = import.meta.env.VITE_BACKEND_URL
-export const postItems = async (values: AddItemType[], tableId: string | undefined) => {
+
+interface newItem{
+  stock:number;
+  price:number;
+  name:string;
+}
+
+export const postItems = async (values: newItem[], tableId: string | undefined) => {
   const csrfToken = Cookies.get("x-csrf-token")?.toString()
   const body = JSON.stringify({
     tableId: tableId,
@@ -27,8 +35,8 @@ export const postItems = async (values: AddItemType[], tableId: string | undefin
     })
 }
 export const getItems = async (id: string | undefined, setTable: React.Dispatch<React.SetStateAction<Table>>) => {
+
   const csrfToken = Cookies.get("x-csrf-token")?.toString()
-  const bodyReq = JSON.stringify({ tableId: id })
   await fetch(backendURL + "/table/item/" + id, {
     method: "GET", headers: {
       'Content-Type': 'application/json',
@@ -37,7 +45,40 @@ export const getItems = async (id: string | undefined, setTable: React.Dispatch<
   })
     .then(handleFetchErrors)
     .then(res => res.json())
-    .then(data => setTable(data))
+    .then(data => {
+      const table = TableAdapter(data)
+      setTable(table)
+    })
+    .catch(error => {
+      if (error instanceof TypeError) {
+        console.error("error Network: " + error)
+      } else {
+        console.error("Error: " + error)
+      }
+    })
+}
+interface dataUpdate {
+  tableId: string,
+  itemId: string,
+  newItem: {
+    stock: number,
+    price: number,
+    name: string
+  }
+}
+export const updateItems = async (data: dataUpdate) => {
+  const csrfToken = Cookies.get("x-csrf-token")?.toString()
+  const bodyReq = JSON.stringify(data)
+  await fetch(backendURL + "/table/item", {
+    method: "PUT", body: bodyReq, headers: {
+      'Content-Type': 'application/json',
+      'x-csrf-token': csrfToken || ""
+    }, credentials: "include"
+  })
+
+    .then(handleFetchErrors)
+    .then(res => res.json())
+    .then(data => console.log(data))
     .catch(error => {
       if (error instanceof TypeError) {
         console.error("error Network: " + error)
@@ -47,4 +88,27 @@ export const getItems = async (id: string | undefined, setTable: React.Dispatch<
     })
 }
 
-
+interface DeleteItems {
+  tableId: string,
+  itemId: string
+}
+export const deleteItems = async (data: DeleteItems) => {
+  const csrfToken = Cookies.get("x-csrf-token")
+  const bodyReq = JSON.stringify(data)
+  await fetch(backendURL + "/table/item", {
+    method: "DELETE", body: bodyReq, headers: {
+      'Content-Type': 'application/json',
+      'x-csrf-token': csrfToken || ""
+    }, credentials: "include"
+  })
+    .then(handleFetchErrors)
+    .then((res) => res.json())
+    .then(data => console.log(data))
+    .catch(error => {
+      if (error instanceof TypeError) {
+        console.error("error Network: " + error)
+      } else {
+        console.error("Error: " + error)
+      }
+    })
+}
