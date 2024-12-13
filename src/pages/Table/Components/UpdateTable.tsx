@@ -1,5 +1,4 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
-import { updateTable } from "../utils/tableUtils"
 import { updateSchema } from "../yupSchemas/tableSchema"
 
 
@@ -14,6 +13,7 @@ function UpdateTable() {
         validationSchema={updateSchema}
         onSubmit={async (values,{ setSubmitting })=>{
             // await updateTable(values)
+            console.log(values)
             setSubmitting(false)
         }}
         >{({isSubmitting})=>(

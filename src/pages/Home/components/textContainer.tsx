@@ -1,6 +1,5 @@
 import { styled } from "@/styled-system/jsx"
 import { useNavigate } from "react-router-dom"
-import { Title } from "../../Login/components/inputComponents"
 const ContainerText = styled.div`
 display: flex;
 flex-direction:column;

@@ -6,7 +6,7 @@ import { css } from "@/styled-system/css";
 import { styled } from "@/styled-system/jsx";
 import { ErrorMessageStyled } from "../../Login/components/inputComponents";
 import CreateIcon from "@/src/components/styledComponents/CreateIcon";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "@/src/components/styledComponents/Loader";
 const FormContainer = css`
