@@ -4,14 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "pnpm run build:css && vite build", 
-  "build:css": "panda",  
-  "type-check": "tsc --noEmit",
-  "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-  "preview": "vite preview",
-  "prepare": "panda codegen"  
-},
+    "dev": "vite",
+    "build": "pnpm run build:css && vite build",
+    "build:css": "panda",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "prepare": "panda codegen"
+  },
   "dependencies": {
     "@ag-grid-community/core": "^32.3.2",
     "@ag-grid-community/styles": "^32.3.2",
@@ -52,6 +52,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "postcss": "^8.4.47",
+    "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "^5.5.4",
     "vite": "^5.3.4",
     "yup": "^1.4.0"

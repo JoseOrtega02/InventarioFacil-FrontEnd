@@ -4,7 +4,7 @@ import { userSchemaRegister } from "./schemaYup/UserSchema";
 import { registerFetch } from "./utils/registerUtils";
 import { Container, Input, StyleContainerForm } from "./components/containers";
 import { ErrorMessageStyled, Image, LabelInput, TextInput, Title } from "./components/inputComponents";
-import image from "@/public/register-image.jpg"
+import image from "@/public/register-image.webp"
 import { FormClassName } from "./components/classComponents";
 import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import Loader from "@/src/components/styledComponents/Loader";

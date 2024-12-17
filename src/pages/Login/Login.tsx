@@ -2,7 +2,7 @@ import { Field, Form, Formik, } from "formik"
 import { userSchemaLogin } from "./schemaYup/UserSchema";
 import { loginFetch } from "./utils/loginUtils";
 import { getCRSFToken } from "../../utils/utils";
-import img from "@/public/login-image.jpg"
+import img from "@/public/login-image.webp"
 import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import { Container, Input, StyleContainerForm } from "./components/containers";
 import { Title, LabelInput, TextInput, ErrorMessageStyled, Image } from "./components/inputComponents";

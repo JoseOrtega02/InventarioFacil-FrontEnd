@@ -1,5 +1,5 @@
 import { MainContainer } from "./components/mainContainer"
-import image from "@/public/image-home.jpg"
+import image from "@/public/image-home.webp"
 import TextContainer from "./components/textContainer"
 
 function Home() {
