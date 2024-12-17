@@ -45,4 +45,5 @@ export const PrimaryButton = styled.button`
 `;
 export const Icon = styled.img`
 width: 28px;
+height:28px;
 `
