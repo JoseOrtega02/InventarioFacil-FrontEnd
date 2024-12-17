@@ -8,7 +8,7 @@ import image from "@/public/register-image.webp"
 import { FormClassName } from "./components/classComponents";
 import { PrimaryButton } from "@/src/components/styledComponents/Buttons";
 import Loader from "@/src/components/styledComponents/Loader";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import useLoggingStore from "../zustand/logginState";
 function Register() {
@@ -68,7 +68,7 @@ function Register() {
             <PrimaryButton type="submit" disabled={isSubmitting}>{isSubmitting?(<Loader />):(<>Register</>)}</PrimaryButton>
           </Form>
 
-          <h4 style={{ color: "white" }}>Already have an account? <a href="/login" style={{ color: "#ED7D31" }}>Log In</a></h4>
+          <h4 style={{ color: "white" }}>Already have an account? <Link to="/login" style={{ color: "#ED7D31" }}>Log In</Link></h4>
         </StyleContainerForm>
       )}</Formik>
       <Image src={image} />

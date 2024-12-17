@@ -9,7 +9,7 @@ import { Title, LabelInput, TextInput, ErrorMessageStyled, Image } from "./compo
 import { FormClassName } from "./components/classComponents";
 
 import useLoggingStore from "../zustand/logginState";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Loader from "@/src/components/styledComponents/Loader";
 
@@ -65,7 +65,7 @@ setIsLogging(true)
             
             </PrimaryButton>
           </Form>
-          <h4 style={{ color: "white" }}>Dont have an account? <a href="/register" style={{ color: "#ED7D31" }}>Register</a></h4>
+          <h4 style={{ color: "white" }}>Dont have an account? <Link to="/register" style={{ color: "#ED7D31" }}>Register</Link></h4>
         </StyleContainerForm>
       )}
     </Formik>
