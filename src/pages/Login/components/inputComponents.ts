@@ -8,7 +8,7 @@ display:none;
 }
 `
 export const Title = styled.div`
-font-family: 'Krona One', sans-serif;
+font-family: 'Krona One', Arial, sans-serif;
 font-size: 36px;
 color:white;
 `
