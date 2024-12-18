@@ -36,7 +36,7 @@ function TextContainer() {
   const navigate = useNavigate()
   return (
     <ContainerText>
-      <TitleBlack>Mantene tu stock siempre en orden y potencia tu negocio</TitleBlack>
+      <TitleBlack>Keep your stock always organized and boost your business.</TitleBlack>
       <Button onClick={() => navigate("/dashboard/tables")}>Start</Button>
     </ContainerText>
   )
